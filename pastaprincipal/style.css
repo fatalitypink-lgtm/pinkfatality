@@ -98,13 +98,7 @@ header {
   font-size: 14px;
 }
 
-.logo {
-  font-family: var(--font-script);
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  flex: 1;
-}
+
 
 /* ADICIONADO: imagem do logo, com espaço em volta para não ficar justa */
 .logo img {
