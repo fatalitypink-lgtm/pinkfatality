@@ -1,0 +1,723 @@
+/* ==========================================================================
+   VARIÁVEIS E RESET
+   ========================================================================== */
+
+:root {
+  --pink: #ec1e79;
+  --pink-dark: #a3134f;
+  --pink-light: #fdeaf3;
+  --black: #141114;
+
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-script: 'Dancing Script', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  background: #fff;
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+/* Controla qual "página" aparece na tela (ver script.js -> showView) */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+
+/* ==========================================================================
+   HEADER / NAVEGAÇÃO
+   ========================================================================== */
+
+.topbar {
+  height: 14px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+  border-radius: 0 0 30px 30px;
+}
+
+header {
+  padding: 14px 24px 0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 20;
+}
+
+.navrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.search {
+  display: flex;
+  border: 3px solid var(--black);
+  border-radius: 0 20px 20px 0;   /* ALTERADO: lado esquerdo (lupa rosa) quadrado, direito arredondado */
+  overflow: hidden;
+  flex: 1;
+  min-width: 180px;
+  max-width: 340px;
+}
+
+.search button {
+  background: var(--pink);
+  color: #fff;
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  flex: 1;
+  font-size: 14px;
+}
+
+.logo {
+  font-family: var(--font-script);
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  flex: 1;
+}
+
+/* ADICIONADO: imagem do logo, com espaço em volta para não ficar justa */
+.logo img {
+  display: block;
+  height: 64px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 6px 0;
+  object-fit: contain;
+}
+
+.navicons {
+  display: flex;
+  gap: 26px;
+}
+
+.navicons a,
+.navicons button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--black);
+  background: none;
+}
+
+.navicons a .ic,
+.navicons button .ic {
+  font-size: 22px;
+}
+
+.navicons a.active {
+  color: var(--pink);
+}
+
+.bandpink {
+  height: 22px;
+  background: var(--pink);
+  margin-top: 10px;
+}
+
+
+/* ==========================================================================
+   SEÇÃO HERO (banner da página inicial)
+   ========================================================================== */
+
+.hero {
+  background: linear-gradient(180deg, #ffe1ee, #fff);
+  padding: 50px 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero .tag {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.hero .cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero .ph {
+  width: 150px;
+  height: 190px;
+  border: 3px solid var(--pink);
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.hero .hits {
+  font-family: var(--font-script);
+  font-size: 30px;
+  text-align: right;
+}
+
+.hits b {
+  color: var(--pink);
+  font-family: var(--font-pixel);
+  font-size: 24px;
+}
+
+
+/* ==========================================================================
+   GRADE DE PRODUTOS (usada na Home e na página Produtos)
+   ========================================================================== */
+
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 20px 24px 0;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.toolbar select {
+  border: 2px solid var(--black);
+  border-radius: 20px;
+  padding: 8px 14px;
+  background: var(--pink-light);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0 24px 40px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 28px;   /* ALTERADO: era 10px */
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .06);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .img {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 54px;
+  background: #fafafa;
+}
+
+.card .info {
+  background: var(--pink);
+  color: #fff;
+  padding: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 22px;   /* ADICIONADO */
+  margin: 0 8px 8px;     /* ADICIONADO */
+}
+
+.card .name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.card .desc {
+  font-size: 12px;
+  opacity: .85;
+  min-height: 34px;
+  display: none;   /* ADICIONADO: esconde a descrição do card */
+}
+
+.card .old {
+  text-decoration: line-through;
+  opacity: .7;
+  font-size: 13px;
+}
+
+.card .price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card .off {
+  background: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+.card .inst {
+  font-size: 11px;
+  opacity: .85;
+}
+
+.addbtn {
+  margin: 0 14px 14px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid var(--pink);
+  background: #fff;
+  color: var(--pink);
+  font-weight: bold;
+  transition: background .2s, color .2s;   /* ADICIONADO: transição suave */
+}
+
+/* ADICIONADO: ao passar o ponteiro, fundo rosa e texto preto */
+.addbtn:hover {
+  background: var(--pink);
+  color: var(--black);
+}
+
+
+/* ==========================================================================
+   PÁGINA DE DETALHE DO PRODUTO
+   ========================================================================== */
+
+.pdetail {
+  display: flex;
+  gap: 40px;
+  padding: 30px 24px;
+  flex-wrap: wrap;
+}
+
+.pdetail .imgbox {
+  width: 320px;
+  height: 320px;
+  background: #fafafa;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbs div {
+  width: 60px;
+  height: 60px;
+  background: #fafafa;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  border: 1px solid #eee;
+}
+
+.pinfo {
+  flex: 1;
+  min-width: 260px;
+}
+
+.pinfo h2 {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  background: var(--pink-light);
+  color: var(--pink);
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  padding: 6px 10px;
+  border-radius: 14px;
+}
+
+.pinfo p.desc {
+  margin: 14px 0;
+  color: #444;
+}
+
+.pinfo .old {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.pinfo .price {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.qtybox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.qtybox button {
+  background: var(--pink);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+.qtybox input {
+  width: 40px;
+  text-align: center;
+  border: 2px solid var(--black);
+  border-radius: 6px;
+}
+
+.cta {
+  background: var(--pink);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.variacoes {
+  margin-top: 24px;
+  border: 2px solid var(--black);
+  border-radius: 14px;
+  padding: 16px;
+  max-width: 260px;
+}
+
+.variacoes h4 {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 / 10px 10px;
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+  background: var(--pink);
+  color: #fff;
+  padding: 40px 24px 20px;
+}
+
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.fgrid h4 {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.fgrid a,
+.fgrid div {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: .95;
+}
+
+footer .bottom {
+  border-top: 1px solid rgba(255, 255, 255, .3);
+  padding-top: 16px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* ==========================================================================
+   PAINÉIS LATERAIS (carrinho e login) + OVERLAY
+   ========================================================================== */
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+  display: none;
+  z-index: 30;
+}
+
+#overlay.show {
+  display: block;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 380px;
+  max-width: 92vw;
+  height: 100%;
+  background: #fff;
+  z-index: 40;
+  transition: right .3s;
+  overflow-y: auto;
+  box-shadow: -6px 0 20px rgba(0, 0, 0, .15);
+}
+
+.drawer.open {
+  right: 0;
+}
+
+.drawer.small {
+  width: 340px;
+  top: 80px;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+}
+
+.dhead {
+  background: var(--pink);
+  color: #fff;
+  padding: 16px 20px;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeb {
+  background: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Item dentro do carrinho */
+.citem {
+  display: flex;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--pink);
+  color: #fff;
+  margin: 16px 20px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.citem .cimg {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, .15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.citem .cinfo {
+  flex: 1;
+}
+
+.citem .cqty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.citem .cqty button {
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.ctotal {
+  padding: 16px 20px;
+  background: var(--pink);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cactions {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cactions button {
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--pink-light);
+  color: var(--pink);
+  font-weight: bold;
+}
+
+.cactions button.main {
+  background: var(--pink);
+  color: #fff;
+}
+
+/* Formulário de login (dentro do painel "Perfil") */
+.loginform {
+  padding: 20px;
+}
+
+.loginform label {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  display: block;
+  margin: 14px 0 6px;
+}
+
+.loginform input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--black);
+  border-radius: 10px;
+}
+
+.loginform .enter {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--pink-light);
+  color: var(--pink);
+  border-radius: 20px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+}
+
+.loginform .row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--pink);
+}
+
+
+/* ==========================================================================
+   PÁGINA DE CADASTRO
+   ========================================================================== */
+
+.signup {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+}
+
+.signup label {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.signup input,
+.signup select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.signup .full {
+  grid-column: 1 / -1;
+}
+
+.signup button {
+  background: var(--pink-light);
+  color: var(--pink);
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .navrow {
+    justify-content: center;
+  }
+
+  .pdetail {
+    flex-direction: column;
+  }
+
+  .signup {
+    grid-template-columns: 1fr;
+  }
+}

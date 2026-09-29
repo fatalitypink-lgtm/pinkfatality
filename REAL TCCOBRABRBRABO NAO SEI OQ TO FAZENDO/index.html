@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pink Fatality</title>
+
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Dancing+Script:wght@700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======================= HEADER ======================= -->
+  <div class="topbar"></div>
+
+  <header>
+    <form class="navrow" id="searchform">
+
+      <div class="search">
+        <button type="submit">🔍</button>
+        <input id="searchbox" placeholder="O que você está procurando hoje?">
+      </div>
+
+  
+      <div class="logo">Pink Fatality</div>
+
+      <div class="navicons">
+        <a href="#" data-view="view-home" class="active">
+          <span class="ic">🏠</span>Início
+        </a>
+        <a href="#" data-view="view-products">
+          <span class="ic">⭐</span>Produtos
+        </a>
+        <button type="button" id="cartbtn">
+          <span class="ic">🛒</span>Carrinho
+        </button>
+        <button type="button" id="profilebtn">
+          <span class="ic">👤</span>Perfil
+        </button>
+      </div>
+
+    </form>
+    <div class="bandpink"></div>
+  </header>
+
+
+  <!-- ======================= CONTEÚDO ======================= -->
+  <main>
+
+    <!-- ---------- Página: Início ---------- -->
+    <section id="view-home" class="view active">
+
+      <div class="hero">
+        <div class="tag">ESTILO<br>&amp;<br>PROTEÇÃO.</div>
+        <div class="cards">
+          <div class="ph">🕶️</div>
+          <div class="ph">💄</div>
+          <div class="ph">👓</div>
+        </div>
+        <div class="hits">Looks cute.<br><b>HITS</b> Different!</div>
+      </div>
+
+      <h2 class="section-title">DESTAQUES</h2>
+      <div class="grid" id="home-grid"></div>
+
+      <!-- ---------- Footer (só na página inicial) ---------- -->
+      <footer>
+        <div class="fgrid">
+          <div>
+            <h4>EXPLORE PINKFATALITY.COM</h4>
+            <div>Spray de gengibre</div>
+            <div>Alarme pessoal</div>
+            <div>Kubotan</div>
+            <div>Lanterna tática</div>
+            <div>Kit promocional</div>
+            <div>Vídeos explicativos</div>
+          </div>
+          <div>
+            <h4>SERVIÇOS ONLINE</h4>
+            <div>Métodos de pagamento</div>
+            <div>Opções de envio</div>
+            <div>A minha conta</div>
+            <div>Devoluções</div>
+            <div>Instruções de uso</div>
+            <div>Perguntas mais frequentes</div>
+          </div>
+          <div>
+            <h4>A EMPRESA</h4>
+            <div>Sobre nós</div>
+            <div>Nossa causa</div>
+            <div>Ética &amp; Compliance</div>
+            <div>Política da empresa</div>
+          </div>
+          <div>
+            <h4>SUPORTE</h4>
+            <div>Ajuda e contato</div>
+            <div>Aviso de privacidade</div>
+            <div>Política de cookies</div>
+            <div>Regulamento</div>
+            <div>Fale conosco</div>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <span>
+            Pink Fatality Produtos de Defesa Feminina SLU ME. CNPJ: 48.731.592/0001-26 —
+            Rua Santa Catarina, 360 - Parque Industrial, Queimados - RJ, 26373-29, Brasil
+          </span>
+          <span>▶ 📷 💬 📘 🎵</span>
+        </div>
+      </footer>
+
+    </section>
+
+    <!-- ---------- Página: Lista de produtos ---------- -->
+    <section id="view-products" class="view">
+      <div class="toolbar">
+        <h2 class="section-title" id="ptitle" style="padding:0">TOTAL DE 5 PRODUTOS</h2>
+        <select>
+          <option>Mais vendido</option>
+          <option>Menor preço</option>
+          <option>Maior preço</option>
+        </select>
+      </div>
+
+      <div class="grid" id="products-grid"></div>
+    </section>
+
+    <!-- ---------- Página: Detalhe do produto ---------- -->
+    <section id="view-product" class="view">
+      <h2 class="section-title">PRODUTOS</h2>
+      <div class="pdetail" id="product-detail"></div>
+    </section>
+
+    <!-- ---------- Página: Cadastro ---------- -->
+    <section id="view-signup" class="view">
+      <h2 class="section-title">CADASTRO</h2>
+
+      <form class="signup" id="signupform">
+        <div>
+          <label>NOME</label>
+          <input placeholder="Digite o seu nome..." required>
+        </div>
+        <div>
+          <label>E-MAIL</label>
+          <input type="email" placeholder="Digite o seu e-mail..." required>
+        </div>
+        <div>
+          <label>SOBRENOME</label>
+          <input placeholder="Digite o seu sobrenome..." required>
+        </div>
+        <div>
+          <label>SENHA</label>
+          <input type="password" placeholder="Senha" required>
+        </div>
+        <div>
+          <label>TELEFONE</label>
+          <input placeholder="(21) 00000-0000">
+        </div>
+        <div>
+          <label>CONFIRMAR SENHA</label>
+          <input type="password" placeholder="Senha" required>
+        </div>
+        <div>
+          <label>CPF</label>
+          <input placeholder="Digite o seu cpf...">
+        </div>
+        <div></div>
+        <div class="full">
+          <label>DATA DE NASCIMENTO</label>
+          <div style="display:flex; gap:10px">
+            <select><option>Dia</option></select>
+            <select><option>Mês</option></select>
+            <select><option>Ano</option></select>
+          </div>
+        </div>
+        <div class="full">
+          <button type="submit">CONCLUIR CADASTRO ›</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+
+  <!-- ======================= OVERLAY + PAINÉIS ======================= -->
+  <div id="overlay"></div>
+
+  <!-- Painel: Carrinho -->
+  <div class="drawer" id="cart-drawer">
+    <div class="dhead">
+      <span>MEU CARRINHO 🛒</span>
+      <button class="closeb" data-close="cart-drawer">✕</button>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="ctotal">
+      <span>QUANTIDADE DE PRODUTOS</span>
+      <b id="cart-count">00</b>
+    </div>
+    <div class="ctotal">
+      <span>TOTAL</span>
+      <b id="cart-total">R$0,00</b>
+    </div>
+
+    <div class="cactions">
+      <button data-close="cart-drawer">Adicionar mais itens</button>
+      <button class="main" id="checkoutbtn">Finalizar compra</button>
+    </div>
+  </div>
+
+  <!-- Painel: Login -->
+  <div class="drawer small" id="profile-drawer">
+    <div class="dhead">
+      <span>MINHA CONTA</span>
+      <button class="closeb" data-close="profile-drawer">✕</button>
+    </div>
+
+    <div class="loginform">
+      <label>EMAIL OU CPF</label>
+      <input placeholder="Insira aqui">
+
+      <label>SENHA</label>
+      <input type="password" placeholder="Senha">
+
+      <button class="enter">ENTRAR</button>
+
+      <div class="row">
+        <a href="#" id="gotosignup">CRIAR SUA CONTA</a>
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
