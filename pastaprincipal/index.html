@@ -175,11 +175,51 @@
         </div>
         <div></div>
         <div class="full">
-          <label>DATA DE NASCIMENTO</label>
-          <div style="display:flex; gap:10px">
-            <select><option>Dia</option></select>
-            <select><option>Mês</option></select>
-            <select><option>Ano</option></select>
+          <fieldset class="campo-data">
+  <legend>Data de nascimento</legend>
+
+  <div class="campo-data__selects">
+    <label class="sr-only" for="dia">Dia</label>
+    <select id="dia" name="dia" autocomplete="bday-day" required>
+      <option value="">Dia</option>
+    </select>
+
+    <label class="sr-only" for="mes">Mês</label>
+    <select id="mes" name="mes" autocomplete="bday-month" required>
+      <option value="">Mês</option>
+      <option value="1">Janeiro</option>
+      <option value="2">Fevereiro</option>
+      <option value="3">Março</option>
+      <option value="4">Abril</option>
+      <option value="5">Maio</option>
+      <option value="6">Junho</option>
+      <option value="7">Julho</option>
+      <option value="8">Agosto</option>
+      <option value="9">Setembro</option>
+      <option value="10">Outubro</option>
+      <option value="11">Novembro</option>
+      <option value="12">Dezembro</option>
+    </select>
+
+    <label class="sr-only" for="ano">Ano</label>
+    <select id="ano" name="ano" autocomplete="bday-year" required>
+      <option value="">Ano</option>
+    </select>
+  </div>
+</fieldset>
+<script>
+  const dia = document.getElementById("dia");
+  const ano = document.getElementById("ano");
+
+  for (let d = 1; d <= 31; d++) {
+    dia.add(new Option(d, d));
+  }
+
+  const anoAtual = new Date().getFullYear();
+  for (let a = anoAtual; a >= anoAtual - 100; a--) {
+    ano.add(new Option(a, a));
+  }
+</script>
           </div>
         </div>
         <div class="full">
