@@ -5,12 +5,13 @@
 const products = [
   {
     id: 1,
-    icon: "🧴",
+     icon: "🗝️",
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
     price: 99.90,
     old: 110.90,
     inst: "3x de R$36,33"
+  
   },
   {
     id: 2,
