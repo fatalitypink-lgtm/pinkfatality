@@ -108,7 +108,7 @@ header {
   display: flex;
   justify-content: center;   /* centro na horizontal */
   align-items: center;       /* centro na vertical */
-  height: 200px;             /* altura da faixa branca */
+  height: 100px;             /* altura da faixa branca */
   width: 100%;
   margin: 0;
   padding: 0;
@@ -125,7 +125,7 @@ header {
 /* ADICIONADO: imagem do logo, com espaço em volta para não ficar justa */
 .logo img {
   display: block;
-  height: 64px;
+  height: 32px;
   width: auto;
   max-width: 100%;
   margin: 0 auto;
