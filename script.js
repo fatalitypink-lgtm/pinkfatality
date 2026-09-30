@@ -124,7 +124,7 @@ function showView(viewId) {
 }
 
 // Clique nos ícones "Início" / "Produtos" do menu
-document.querySelectorAll(".navicons a").forEach(link => {
+document.querySelectorAll(".navicons a, .logo-area").forEach(link => {
   link.addEventListener("click", event => {
     event.preventDefault();
     showView(link.dataset.view);
