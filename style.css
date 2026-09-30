@@ -189,20 +189,48 @@ header {
 
 .hero .cards {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
 }
 
-.hero .ph {
-  width: 150px;
-  height: 190px;
-  border: 3px solid var(--pink);
-  border-radius: 8px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 60px;
+/* Conjunto janela + foto */
+.win {
+  position: relative;
+  width: 230px;
+}
+
+/* Janela (PNG) fica ATRÁS e define o tamanho */
+.win .moldura {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+/* Foto da modelo fica NA FRENTE, dentro da janela */
+.win .foto {
+  position: absolute;
+  z-index: 2;
+  top: 12%;       /* ajuste estes 4 valores até encaixar */
+  left: 2%;
+  width: 96%;
+  height: 76%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Janelas em alturas diferentes, como no modelo */
+.w1 { margin-top: 0; }
+.w2 { margin-top: 20px; }
+.w3 { margin-top: 70px; }
+
+@media (max-width: 640px) {
+  .hero .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .w2, .w3 { margin-top: 0; }
 }
 
 .hero .hits {
@@ -216,7 +244,9 @@ header {
   font-family: var(--font-pixel);
   font-size: 24px;
 }
-
+.w1 .foto { top: 11%; height: 78%; }
+.w2 .foto { top: 12%; height: 76%; }
+.w3 .foto { top: 14%; height: 72%; }
 
 /* ==========================================================================
    GRADE DE PRODUTOS (usada na Home e na página Produtos)

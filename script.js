@@ -5,7 +5,7 @@
 const products = [
   {
     id: 1,
-    image: "img/IMG_1795.JPG.jpeg",
+    image: "img/produtos/IMG_1811.PNG",
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
     price: 99.90,
@@ -24,7 +24,7 @@ const products = [
   },
   {
     id: 3,
-    image: "img/IMG_1795.JPG.jpeg",
+    image: "img/produtos/IMG_1817.PNG",
     name: "Lanterna tática",
     desc: "Resistente à água e quedas, com 10.000 lúmens, bateria recarregável via USB-C e cinco modos de iluminação.",
     price: 59.90,
