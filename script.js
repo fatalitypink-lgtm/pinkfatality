@@ -6,6 +6,11 @@ const products = [
   {
     id: 1,
     image: "img/produtos/IMG_1811.PNG",
+    images: ["img/produtos/IMG_1811.PNG"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+    variants: [
+      { label: "Padrão", color: "#141114", image: "img/produtos/IMG_1811.PNG" }
+      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+    ],
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
     price: 99.90,
@@ -16,6 +21,11 @@ const products = [
   {
     id: 2,
     image: "img/kubotan.jpg.jpeg",
+    images: ["img/kubotan.jpg.jpeg"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+    variants: [
+      { label: "Padrão", color: "#141114", image: "img/kubotan.jpg.jpeg" }
+      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+    ],
     name: "Kubotan",
     desc: "Leve e compacto, com apenas 40g e 14cm, possui argola para chaveiro, facilitando o transporte em bolsas, mochilas ou junto às chaves.",
     price: 22.90,
@@ -25,6 +35,11 @@ const products = [
   {
     id: 3,
     image: "img/produtos/IMG_1817.PNG",
+    images: ["img/produtos/IMG_1817.PNG"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+    variants: [
+      { label: "Padrão", color: "#141114", image: "img/produtos/IMG_1817.PNG" }
+      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+    ],
     name: "Lanterna tática",
     desc: "Resistente à água e quedas, com 10.000 lúmens, bateria recarregável via USB-C e cinco modos de iluminação.",
     price: 59.90,
@@ -34,6 +49,11 @@ const products = [
   {
     id: 4,
     image: "img/IMG_1795.JPG.jpeg",
+    images: ["img/IMG_1795.JPG.jpeg"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+    variants: [
+      { label: "Padrão", color: "#141114", image: "img/IMG_1795.JPG.jpeg" }
+      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+    ],
     name: "Alarme pessoal",
     desc: "Alarme sonoro compacto para emergências, disponível em preto e rosa — fácil de levar no chaveiro ou na bolsa.",
     price: 44.90,
@@ -43,6 +63,11 @@ const products = [
   {
     id: 5,
     image: "img/kit.jpg.jpeg",
+    images: ["img/kit.jpg.jpeg"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+    variants: [
+      { label: "Padrão", color: "#141114", image: "img/kit.jpg.jpeg" }
+      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+    ],
     name: "Kit promocional",
     desc: "Kit com spray de gengibre, kubotan e alarme pessoal — proteção completa com desconto especial.",
     price: 139.90,
@@ -160,13 +185,20 @@ document.getElementById("searchform").addEventListener("submit", event => {
    ========================================================================== */
 
 function productDetailHTML(product) {
-  const thumbnails = Array(4)
-    .fill(`<div><img src="${product.image}" alt="${product.name}"></div>`)
+  // Usa o array "images" do produto (uma foto por variação). Se não existir, cai no "image" único.
+  const gallery = product.images && product.images.length ? product.images : [product.image];
+
+  const thumbnails = gallery
+    .map((src, index) => `
+      <div class="thumb${index === 0 ? " active" : ""}" onclick="selectProductImage(this, '${src}')">
+        <img src="${src}" alt="${product.name} - variação ${index + 1}">
+      </div>
+    `)
     .join("");
 
   return `
     <div>
-      <div class="imgbox"><img src="${product.image}" alt="${product.name}"></div>
+      <div class="imgbox"><img id="main-product-img" src="${gallery[0]}" alt="${product.name}"></div>
       <div class="thumbs">${thumbnails}</div>
     </div>
     <div class="pinfo">
@@ -189,7 +221,7 @@ function productDetailHTML(product) {
       </div>
       <div class="variacoes">
         <h4>VARIAÇÕES:</h4>
-        <div class="swatch"></div>
+        <div class="swatch-row">${variantSwatchesHTML(product)}</div>
       </div>
     </div>
   `;
@@ -201,10 +233,41 @@ function stepQuantity(delta) {
   input.value = Math.max(1, Number(input.value) + delta);
 }
 
+/** Monta as bolinhas de variação (cor) do produto, cada uma clicável */
+function variantSwatchesHTML(product) {
+  if (!product.variants || !product.variants.length) return "";
+
+  return product.variants
+    .map((variant, index) => `
+      <button
+        type="button"
+        class="swatch${index === 0 ? " active" : ""}"
+        style="background:${variant.color}"
+        title="${variant.label}"
+        onclick="selectVariant(this, '${variant.image}')"
+      ></button>
+    `)
+    .join("");
+}
+
+/** Troca a foto grande do produto pela da variação clicada, e marca ela como ativa */
+function selectVariant(swatchEl, src) {
+  document.getElementById("main-product-img").src = src;
+  document.querySelectorAll(".swatch-row .swatch").forEach(swatch => swatch.classList.remove("active"));
+  swatchEl.classList.add("active");
+}
+
 function openProduct(id) {
   const product = products.find(p => p.id === id);
   document.getElementById("product-detail").innerHTML = productDetailHTML(product);
   showView("view-product");
+}
+
+/** Troca a foto grande do produto pela da miniatura clicada, e marca ela como ativa */
+function selectProductImage(thumbEl, src) {
+  document.getElementById("main-product-img").src = src;
+  document.querySelectorAll(".thumbs .thumb").forEach(thumb => thumb.classList.remove("active"));
+  thumbEl.classList.add("active");
 }
 
 
@@ -242,11 +305,13 @@ function cartItemHTML(item) {
     <div class="citem">
       <div class="cimg"><img src="${item.image}" alt="${item.name}"></div>
       <div class="cinfo">
-        <div>${item.name}</div>
-        <div class="old" style="opacity:.7">${formatMoney(item.old)}</div>
-        <div>
-          <b>${formatMoney(item.price)}</b>
-          <span class="off">-${discountPercent(item)}%</span>
+        <div class="cinfo-text">
+          <div class="cname">${item.name}</div>
+          <div class="old">${formatMoney(item.old)}</div>
+          <div class="cprice">
+            <b>${formatMoney(item.price)}</b>
+            <span class="off">-${discountPercent(item)}%</span>
+          </div>
         </div>
         <div class="cqty">
           <button onclick="changeCartQuantity(${item.id}, 1)">+</button>
@@ -269,6 +334,8 @@ function renderCart() {
 
   document.getElementById("cart-count").textContent = String(totalCount).padStart(2, "0");
   document.getElementById("cart-total").textContent = formatMoney(totalPrice);
+  document.getElementById("checkoutbtn").textContent =
+    `Finalizar compra (${String(totalCount).padStart(2, "0")})`;
 }
 
 document.getElementById("checkoutbtn").addEventListener("click", () => {

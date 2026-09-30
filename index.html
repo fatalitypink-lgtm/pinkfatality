@@ -245,9 +245,10 @@
 
   <!-- Painel: Carrinho -->
   <div class="drawer" id="cart-drawer">
-    <div class="dhead">
-      <span>MEU CARRINHO </span>
-      <button class="closeb" data-close="cart-drawer">✕</button>
+    <div class="dhead-cart">
+      <button class="closeb-badge" data-close="cart-drawer">✕</button>
+      <span>MEU CARRINHO:</span>
+      <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
     </div>
 
     <div id="cart-items"></div>
@@ -263,7 +264,7 @@
 
     <div class="cactions">
       <button data-close="cart-drawer">Adicionar mais itens</button>
-      <button class="main" id="checkoutbtn">Finalizar compra</button>
+      <button class="main" id="checkoutbtn">Finalizar compra (00)</button>
     </div>
   </div>
 

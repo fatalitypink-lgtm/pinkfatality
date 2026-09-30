@@ -258,6 +258,13 @@ header {
   padding: 20px 24px 0;
 }
 
+/* Título "DESTAQUES" da página inicial: centralizado e mais afastado do banner e dos produtos */
+#view-home .section-title {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -419,6 +426,12 @@ header {
   justify-content: center;
   font-size: 26px;
   border: 1px solid #eee;
+  cursor: pointer;             /* ADICIONADO: indica que é clicável */
+  transition: border-color .15s;
+}
+
+.thumbs div.active {
+  border: 2px solid var(--pink);  /* ADICIONADO: destaca a miniatura selecionada */
 }
 
 .thumbs div img {
@@ -470,7 +483,7 @@ header {
   margin-top: 16px;
 }
 
-.qtybox button {
+.qtybox button:not(.cta) {
   background: var(--pink);
   color: #fff;
   width: 32px;
@@ -508,11 +521,29 @@ header {
   margin-bottom: 10px;
 }
 
+.swatch-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .swatch {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 / 10px 10px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color .15s, transform .15s;
+}
+
+.swatch:hover {
+  transform: scale(1.08);
+}
+
+.swatch.active {
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--pink);
 }
 
 
@@ -617,6 +648,43 @@ footer .bottom {
   font-size: 18px;
 }
 
+/* Cabeçalho do carrinho: branco, com linha rosa embaixo e ícone de carrinho */
+.dhead-cart {
+  position: relative;
+  background: #fff;
+  color: var(--black);
+  padding: 20px 20px 14px;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--pink);
+}
+
+.dhead-cart .cart-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--pink);
+}
+
+/* Botão de fechar em formato de selo, flutuando no canto superior esquerdo */
+.closeb-badge {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  width: 30px;
+  height: 30px;
+  background: var(--pink);
+  color: var(--black);
+  font-weight: bold;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+
 /* Item dentro do carrinho */
 .citem {
   display: flex;
@@ -648,6 +716,25 @@ footer .bottom {
 
 .citem .cinfo {
   flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.citem .cname {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.citem .old {
+  text-decoration: line-through;
+  opacity: .7;
+  font-size: 12px;
+}
+
+.citem .cprice {
+  font-size: 15px;
 }
 
 .citem .cqty {
@@ -676,16 +763,17 @@ footer .bottom {
 .cactions {
   padding: 16px 20px;
   display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
 .cactions button {
-  padding: 12px;
+  flex: 1;
+  padding: 12px 10px;
   border-radius: 20px;
   background: var(--pink-light);
   color: var(--pink);
   font-weight: bold;
+  font-size: 13px;
 }
 
 .cactions button.main {
