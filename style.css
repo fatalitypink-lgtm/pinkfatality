@@ -698,7 +698,14 @@ footer .bottom {
   font-size: 13px;
   color: var(--pink);
 }
-
+.navicons .ic {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: currentColor;   /* pega a cor do texto */
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
 
 /* ==========================================================================
    PÁGINA DE CADASTRO
