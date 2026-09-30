@@ -106,16 +106,15 @@ header {
 }
 .logo-area {
   display: flex;
-  justify-content: center;   /* centro na horizontal */
-  align-items: center;       /* centro na vertical */
-  height: 100px;             /* altura da faixa branca */
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 1;              /* ALTERADO: divide o espaço com .search e .navicons, em vez de ocupar 100% sozinha */
   margin: 0;
   padding: 0;
 }
 
 .logo-img {
-  height: 120px;
+  height: 70px;    /* ALTERADO: era 120px — estava maior que a própria caixa (.logo-area) */
   width: auto;
   max-width: 100%;
   display: block;
@@ -272,6 +271,12 @@ header {
   background: #fafafa;
 }
 
+.card .img img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
 .card .info {
   background: var(--pink);
   color: #fff;
@@ -360,6 +365,12 @@ header {
   font-size: 120px;
 }
 
+.pdetail .imgbox img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
 .thumbs {
   display: flex;
   gap: 10px;
@@ -376,6 +387,12 @@ header {
   justify-content: center;
   font-size: 26px;
   border: 1px solid #eee;
+}
+
+.thumbs div img {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
 }
 
 .pinfo {
@@ -589,6 +606,12 @@ footer .bottom {
   align-items: center;
   justify-content: center;
   font-size: 28px;
+}
+
+.citem .cimg img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
 }
 
 .citem .cinfo {

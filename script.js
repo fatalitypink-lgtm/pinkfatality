@@ -5,7 +5,7 @@
 const products = [
   {
     id: 1,
-     icon: "🗝️",
+    image: "img/IMG_1795.JPG.jpeg",
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
     price: 99.90,
@@ -15,7 +15,7 @@ const products = [
   },
   {
     id: 2,
-    icon: "🗝️",
+    image: "img/kubotan.jpg.jpeg",
     name: "Kubotan",
     desc: "Leve e compacto, com apenas 40g e 14cm, possui argola para chaveiro, facilitando o transporte em bolsas, mochilas ou junto às chaves.",
     price: 22.90,
@@ -24,7 +24,7 @@ const products = [
   },
   {
     id: 3,
-    icon: "🔦",
+    image: "img/IMG_1795.JPG.jpeg",
     name: "Lanterna tática",
     desc: "Resistente à água e quedas, com 10.000 lúmens, bateria recarregável via USB-C e cinco modos de iluminação.",
     price: 59.90,
@@ -33,7 +33,7 @@ const products = [
   },
   {
     id: 4,
-    icon: "🚨",
+    image: "img/IMG_1795.JPG.jpeg",
     name: "Alarme pessoal",
     desc: "Alarme sonoro compacto para emergências, disponível em preto e rosa — fácil de levar no chaveiro ou na bolsa.",
     price: 44.90,
@@ -42,7 +42,7 @@ const products = [
   },
   {
     id: 5,
-    icon: "🎁",
+    image: "img/kit.jpg.jpeg",
     name: "Kit promocional",
     desc: "Kit com spray de gengibre, kubotan e alarme pessoal — proteção completa com desconto especial.",
     price: 139.90,
@@ -78,7 +78,7 @@ function discountPercent(product) {
 function productCardHTML(product) {
   return `
     <div class="card" onclick="openProduct(${product.id})">
-      <div class="img">${product.icon}</div>
+      <div class="img"><img src="${product.image}" alt="${product.name}"></div>
       <div class="info">
         <div class="name">${product.name}</div>
         <div class="desc">${product.desc}</div>
@@ -160,11 +160,13 @@ document.getElementById("searchform").addEventListener("submit", event => {
    ========================================================================== */
 
 function productDetailHTML(product) {
-  const thumbnails = Array(4).fill(`<div>${product.icon}</div>`).join("");
+  const thumbnails = Array(4)
+    .fill(`<div><img src="${product.image}" alt="${product.name}"></div>`)
+    .join("");
 
   return `
     <div>
-      <div class="imgbox">${product.icon}</div>
+      <div class="imgbox"><img src="${product.image}" alt="${product.name}"></div>
       <div class="thumbs">${thumbnails}</div>
     </div>
     <div class="pinfo">
@@ -238,7 +240,7 @@ function changeCartQuantity(id, delta) {
 function cartItemHTML(item) {
   return `
     <div class="citem">
-      <div class="cimg">${item.icon}</div>
+      <div class="cimg"><img src="${item.image}" alt="${item.name}"></div>
       <div class="cinfo">
         <div>${item.name}</div>
         <div class="old" style="opacity:.7">${formatMoney(item.old)}</div>
