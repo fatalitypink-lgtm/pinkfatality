@@ -382,3 +382,70 @@ document.getElementById("signupform").addEventListener("submit", event => {
   event.preventDefault();
   alert("Cadastro enviado! (demonstração)");
 });
+(function () {
+  const KEY = 'pf_favoritos';
+
+  const carregar = () => {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
+  };
+  const salvar = (lista) => {
+    try { localStorage.setItem(KEY, JSON.stringify(lista)); } catch {}
+  };
+
+  let favoritos = carregar();
+
+  const nomeDoCard = (card) =>
+    (card.querySelector('.name')?.textContent || '').trim();
+
+  // coloca o botão de coração em cada card que ainda não tem
+  function adicionarBotoes() {
+    document.querySelectorAll('.card .img').forEach((img) => {
+      if (img.querySelector('.fav')) return;
+
+      const nome = nomeDoCard(img.closest('.card'));
+      if (!nome) return;
+
+      const ativo = favoritos.includes(nome);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'fav' + (ativo ? ' on' : '');
+      btn.setAttribute('aria-label', 'Favoritar ' + nome);
+      btn.setAttribute('aria-pressed', ativo);
+      img.appendChild(btn);
+    });
+  }
+
+  // clique no coração: marca ou desmarca, sem abrir o produto
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav');
+    if (!btn) return;
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    const nome = nomeDoCard(btn.closest('.card'));
+    const ativo = !favoritos.includes(nome);
+
+    favoritos = ativo
+      ? [...favoritos, nome]
+      : favoritos.filter((n) => n !== nome);
+    salvar(favoritos);
+
+    // atualiza todos os cards do mesmo produto (início e página de produtos)
+    document.querySelectorAll('.card').forEach((card) => {
+      if (nomeDoCard(card) !== nome) return;
+      const b = card.querySelector('.fav');
+      if (!b) return;
+      b.classList.toggle('on', ativo);
+      b.setAttribute('aria-pressed', ativo);
+    });
+  }, true);
+
+  // roda sempre que o seu código criar novos cards
+  new MutationObserver(adicionarBotoes).observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+  adicionarBotoes();
+})();
