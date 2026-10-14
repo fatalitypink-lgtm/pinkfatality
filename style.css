@@ -51,13 +51,14 @@ button {
    ========================================================================== */
 
 .topbar {
+  position: relative;
+  z-index: 25;
   height: 34px;
   margin: 14px 14px 0;
   background: var(--pink);
   border-radius: 20px;
   box-shadow: 10px 10px 0 #000;
 }
-.topbar { position: relative; }
 .topbar-icons {
   position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
   display: flex; align-items: center; gap: 10px; font-size: 20px;
@@ -127,7 +128,7 @@ header {
 }
 
 .logo-img {
-  height: 70px;    /* ALTERADO: era 120px — estava maior que a própria caixa (.logo-area) */
+  height: 110px;   /* era 70px, ajuste como preferir */
   width: auto;
   max-width: 100%;
   display: block;
@@ -191,6 +192,15 @@ header {
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
   z-index: 1;   /* escuro: atrás */
 }
+header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
+
+.navrow { padding: 10px 0 0; }
+
+.bandpink { margin-top: 50px; }       /* abre espaço para as abinhas */
+
+/* ícones mais próximos do modelo */
+.navicons { gap: 30px; margin-right: 40px; }
+.navicons .ic { width: 40px; height: 40px; }
 /* ==========================================================================
    SEÇÃO HERO (banner da página inicial)
    ========================================================================== */
@@ -489,6 +499,143 @@ header {
   background: var(--pink);
   color: var(--black);
 }
+.added-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(440px, 92vw);
+  max-height: 92vh;
+  overflow: visible;
+  background: #fff;
+  border-radius: 20px;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -48%) scale(.96);
+  transition: opacity .2s, transform .2s, visibility .2s;
+}
+.added-modal.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.added-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: url("img/botao-x.png") center / contain no-repeat;
+  image-rendering: pixelated;   /* mantém o visual pixelado nítido */
+  cursor: pointer;
+  z-index: 10;
+  transition: transform .15s;
+}
+
+.added-close:hover { transform: scale(1.1); }
+
+/* topo: produto adicionado */
+.added-top {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--pink-dark);
+  color: #fff;
+  border-radius: 20px 20px 24px 24px;
+  position: relative;
+  z-index: 1;
+}
+.added-top .aimg {
+  position: relative;
+  flex: none;
+  width: 70px;
+  height: 90px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.added-top .aimg img { max-width: 85%; max-height: 85%; }
+.added-top .check {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffc9e1;
+  color: var(--pink-dark);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.added-top h3 { font-family: var(--font-pixel); font-size: 11px; margin-bottom: 8px; }
+.added-top .aname { font-weight: bold; font-size: 14px; }
+.added-top .aold { text-decoration: line-through; font-size: 12px; opacity: .8; }
+.added-top .aprice { font-weight: bold; font-size: 16px; }
+.added-top .aoff {
+  background: #e6e6e6; color: #444; border-radius: 999px;
+  padding: 2px 6px; font-size: 10px; margin-left: 4px;
+}
+.added-top .ainst { font-size: 12px; }
+
+/* sugestões */
+.added-body { padding: 14px 16px 6px; }
+.added-sub { color: var(--pink); font-size: 14px; margin-bottom: 10px; }
+
+.added-carousel { display: flex; gap: 10px; }
+.sug {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  background: #ffa9cf;
+  border-radius: 14px;
+  padding: 8px;
+  cursor: pointer;
+}
+.sug .sbadge {
+  position: absolute; top: 6px; left: 6px;
+  background: var(--pink); color: #fff;
+  font-size: 9px; font-weight: bold;
+  padding: 2px 6px; border-radius: 999px;
+}
+.sug .simg { height: 70px; display: flex; align-items: center; justify-content: center; }
+.sug .simg img { max-width: 100%; max-height: 100%; mix-blend-mode: multiply; }
+.sug .sname { font-size: 12px; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sug .sold { font-size: 11px; text-decoration: line-through; opacity: .7; }
+.sug .sprice { font-weight: bold; font-size: 14px; }
+.sug .splus {
+  position: absolute; right: 6px; bottom: 6px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--pink); color: #fff; font-size: 16px; line-height: 1;
+}
+
+.added-nav { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 12px 0 4px; }
+.added-nav button {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--pink); color: #fff; font-size: 16px; line-height: 1;
+}
+.added-dots { display: flex; gap: 6px; }
+.added-dots span { width: 6px; height: 6px; border-radius: 50%; background: #ffa9cf; }
+.added-dots span.on { width: 22px; border-radius: 6px; background: var(--pink); }
+
+/* botões de baixo */
+.added-actions { display: flex; gap: 10px; padding: 12px 16px 16px; }
+.added-actions button {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: 999px;
+  background: #ffc9e1;
+  color: var(--pink);
+  font-size: 13px;
+}
+.added-actions button:hover { background: var(--pink); color: #fff; }
 
 
 /* ==========================================================================

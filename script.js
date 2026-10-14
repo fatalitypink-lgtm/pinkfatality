@@ -449,3 +449,93 @@ document.getElementById("signupform").addEventListener("submit", event => {
   });
   adicionarBotoes();
 })();
+const SUG_PER_PAGE = 3;
+let sugList = [];
+let sugPage = 0;
+
+function openAddedModal(product) {
+  document.getElementById("added-top").innerHTML = `
+    <div class="aimg">
+      <img src="${product.image}" alt="${product.name}">
+      <span class="check">✓</span>
+    </div>
+    <div>
+      <h3>ADICIONADO AO CARRINHO!</h3>
+      <div class="aname">${product.name}</div>
+      <div class="aold">${formatMoney(product.old)}</div>
+      <div class="aprice">${formatMoney(product.price)}
+        <span class="aoff">-${String(discountPercent(product)).replace(".", ",")}%</span>
+      </div>
+      <div class="ainst">Ou ${product.inst}</div>
+    </div>
+  `;
+
+  // sugestões: produtos que ainda não estão no carrinho
+  sugList = products.filter(p => !cart.some(i => i.id === p.id));
+  sugPage = 0;
+  renderSuggestions();
+
+  document.getElementById("added-modal").classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+}
+
+function renderSuggestions() {
+  const body = document.getElementById("added-body");
+  body.style.display = sugList.length ? "block" : "none";
+
+  const pages = Math.ceil(sugList.length / SUG_PER_PAGE);
+  const slice = sugList.slice(sugPage * SUG_PER_PAGE, (sugPage + 1) * SUG_PER_PAGE);
+
+  document.getElementById("added-carousel").innerHTML = slice.map(p => `
+    <div class="sug" onclick="addToCart(${p.id})">
+      <span class="sbadge">-${String(discountPercent(p)).replace(".", ",")}%</span>
+      <div class="simg"><img src="${p.image}" alt="${p.name}"></div>
+      <div class="sname">${p.name.split(":")[0]}</div>
+      <div class="sold">${formatMoney(p.old)}</div>
+      <div class="sprice">${formatMoney(p.price)}</div>
+      <button class="splus" type="button" aria-label="Adicionar">+</button>
+    </div>
+  `).join("");
+
+  document.getElementById("added-dots").innerHTML =
+    Array.from({ length: pages }, (_, i) => `<span class="${i === sugPage ? "on" : ""}"></span>`).join("");
+}
+
+function stepSuggestions(delta) {
+  const pages = Math.ceil(sugList.length / SUG_PER_PAGE);
+  if (!pages) return;
+  sugPage = (sugPage + delta + pages) % pages;   // volta ao início/fim
+  renderSuggestions();
+}
+
+function closeAddedModal() {
+  document.getElementById("added-modal").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+
+document.getElementById("added-prev").addEventListener("click", () => stepSuggestions(-1));
+document.getElementById("added-next").addEventListener("click", () => stepSuggestions(1));
+document.getElementById("added-close").addEventListener("click", closeAddedModal);
+document.getElementById("added-continue").addEventListener("click", closeAddedModal);
+document.getElementById("added-gocart").addEventListener("click", () => {
+  closeAddedModal();
+  openDrawer("cart-drawer");
+});
+function addToCart(id, quantity = 1) {
+  const product = products.find(p => p.id === id);
+  const existingItem = cart.find(item => item.id === id);
+
+  if (existingItem) {
+    existingItem.qty += quantity;
+  } else {
+    cart.push({ ...product, qty: quantity });
+  }
+
+  renderCart();
+  openAddedModal(product);   // era openDrawer("cart-drawer")
+}
+function closeAllDrawers() {
+  document.querySelectorAll(".drawer").forEach(drawer => drawer.classList.remove("open"));
+  document.getElementById("added-modal").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
