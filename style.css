@@ -875,11 +875,14 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 footer {
   background: #ec2f87;
   color: #fff;
-  padding: 40px 24px 20px;
+  padding: 6px 24px 20px;
   font-family: 'Montserrat', Arial, sans-serif;
+  border-radius: 24px;
+  overflow: hidden;
 }
 footer {
   padding-top: 6px;              /* faixa quase colada no topo, como no modelo */
+  margin: 0 14px 14px;
 }
 
 .footer-topbar {
@@ -1029,23 +1032,6 @@ footer .social img {
   width: 24px;
   height: 24px;
   color: var(--pink);
-}
-
-/* Botão de fechar em formato de selo, flutuando no canto superior esquerdo */
-.closeb-badge {
-  position: absolute;
-  top: -14px;
-  left: -14px;
-  width: 30px;
-  height: 30px;
-  background: var(--pink);
-  color: var(--black);
-  font-weight: bold;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
 }
 
 /* Item dentro do carrinho */
@@ -1293,3 +1279,119 @@ select option[value=""] {
     grid-template-columns: 1fr;
   }
 }
+/* ===== CARRINHO: visual do modelo ===== */
+.drawer { font-family: 'Montserrat', Arial, sans-serif; }
+
+/* painel em coluna: o bloco rosa fica sempre no fundo */
+#cart-drawer {
+  display: flex;
+  flex-direction: column;
+}
+#cart-items { flex: 1; }
+
+/* selo de fechar: traz pra dentro do painel (o overflow cortava) */
+.dhead-cart { padding-left: 46px; }
+
+
+/* item */
+.citem {
+  background: #c9105a;
+  border-radius: 24px;
+  padding: 0 14px 0 0;     /* foto encostada na esquerda */
+  gap: 12px;
+}
+.citem .cimg {
+  flex: none;
+  width: 74px;
+  height: 84px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+}
+.citem .cimg img {
+  max-width: 85%;
+  max-height: 85%;
+  mix-blend-mode: multiply;
+}
+.citem .cinfo { display: block; min-width: 0; }
+.citem .cname {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.citem .crow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+.citem .cprice { display: flex; align-items: center; gap: 6px; }
+.citem .off {
+  background: #e6e6e6;
+  color: #444;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.citem .cinst { font-size: 11px; }
+.citem .cqty { font-size: 14px; }
+
+/* bloco rosa-escuro do fundo */
+.cart-footer {
+  background: #c9105a;
+  color: #fff;
+  padding: 20px 20px 24px;
+  margin-top: 20px;
+}
+.cart-footer .ctotal {
+  background: none;
+  margin: 0;
+  padding: 10px 0;
+  align-items: flex-start;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #ffa9cf;
+}
+.cart-footer .ctotal b {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+.ctotal-values { text-align: right; }
+.ctotal-values b { display: block; }
+.ctotal-values small {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 12px;
+  color: #fff;
+}
+
+/* botões: os dois rosa-claro, como no modelo */
+.cart-footer .cactions { padding: 14px 0 0; }
+.cart-footer .cactions button,
+.cart-footer .cactions button.main {
+  background: #ffc9e1;
+  color: var(--pink-dark);
+  font-size: 13px;
+}
+.cart-footer .cactions button:hover,
+.cart-footer .cactions button.main:hover {
+  background: #fff;
+}
+/* ===== BOTÃO X DO CARRINHO (imagem pixelada) ===== */
+.closeb-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  background: url("img/botao-x.png") center / contain no-repeat;
+  image-rendering: pixelated;
+  cursor: pointer;
+  transition: transform .15s;
+}
+.closeb-badge:hover { transform: scale(1.1); }

@@ -553,3 +553,59 @@ document.getElementById("dest-prev").addEventListener("click", () => {
   if (noInicio) homeGrid.scrollTo({ left: homeGrid.scrollWidth, behavior: "smooth" });
   else homeGrid.scrollBy({ left: -STEP, behavior: "smooth" });
 });
+function cartItemHTML(item) {
+  const off = String(discountPercent(item)).replace(".", ",");
+  return `
+    <div class="citem">
+      <div class="cimg"><img src="${item.image}" alt="${item.name}"></div>
+      <div class="cinfo">
+        <div class="cname">${item.name}</div>
+        <div class="crow">
+          <div class="cinfo-text">
+            <div class="old">${formatMoney(item.old)}</div>
+            <div class="cprice">
+              <b>${formatMoney(item.price)}</b>
+              <span class="off">-${off}%</span>
+            </div>
+            <div class="cinst">Ou ${item.inst}</div>
+          </div>
+          <div class="cqty">
+            <button onclick="changeCartQuantity(${item.id}, 1)">+</button>
+            ${String(item.qty).padStart(2, "0")}
+            <button onclick="changeCartQuantity(${item.id}, -1)">−</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/** "Ou 3x de R$36,33" para o total. Só mostra se todos os itens têm o mesmo nº de parcelas */
+function cartInstallments(items) {
+  const parsed = items.map(item => {
+    const m = item.inst.match(/(\d+)x de R\$([\d.,]+)/);
+    if (!m) return null;
+    return { n: Number(m[1]), v: parseFloat(m[2].replace(".", "").replace(",", ".")) * item.qty };
+  });
+
+  if (!parsed.length || parsed.some(p => !p || p.n !== parsed[0].n)) return "";
+
+  const sum = parsed.reduce((s, p) => s + p.v, 0);
+  return `Ou ${parsed[0].n}x de ${formatMoney(sum)}`;
+}
+
+function renderCart() {
+  const itemsContainer = document.getElementById("cart-items");
+  itemsContainer.innerHTML = cart.length
+    ? cart.map(cartItemHTML).join("")
+    : '<p style="padding:24px">Seu carrinho está vazio.</p>';
+
+  const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+
+  document.getElementById("cart-count").textContent = String(totalCount).padStart(2, "0");
+  document.getElementById("cart-total").textContent = formatMoney(totalPrice);
+  document.getElementById("cart-inst").textContent = cartInstallments(cart);
+  document.getElementById("checkoutbtn").textContent =
+    `Finalizar compra (${String(totalCount).padStart(2, "0")})`;
+}
