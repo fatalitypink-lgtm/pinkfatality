@@ -539,3 +539,17 @@ function closeAllDrawers() {
   document.getElementById("added-modal").classList.remove("open");
   document.getElementById("overlay").classList.remove("show");
 }
+const homeGrid = document.getElementById("home-grid");
+const STEP = 244; // largura do card (220) + espaço (24)
+
+document.getElementById("dest-next").addEventListener("click", () => {
+  const noFim = homeGrid.scrollLeft + homeGrid.clientWidth >= homeGrid.scrollWidth - 4;
+  if (noFim) homeGrid.scrollTo({ left: 0, behavior: "smooth" });
+  else homeGrid.scrollBy({ left: STEP, behavior: "smooth" });
+});
+
+document.getElementById("dest-prev").addEventListener("click", () => {
+  const noInicio = homeGrid.scrollLeft <= 4;
+  if (noInicio) homeGrid.scrollTo({ left: homeGrid.scrollWidth, behavior: "smooth" });
+  else homeGrid.scrollBy({ left: -STEP, behavior: "smooth" });
+});
