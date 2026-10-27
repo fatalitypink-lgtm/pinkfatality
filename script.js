@@ -6,7 +6,11 @@ const products = [
   {
     id: 1,
     image: "img/produtos/IMG_1811.PNG",
-    images: ["img/produtos/IMG_1811.PNG"], // adicione mais caminhos aqui para variações (cores, ângulos etc.)
+        images: [
+  "img/produtos/IMG_1811.PNG",
+  "img/IMG_1756.JPG.jpeg",
+  "img/produtos/IMG_1811.PNG"    // nova imagem
+],
     variants: [
       { label: "Padrão", color: "#141114", image: "img/produtos/IMG_1811.PNG" }
       // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
@@ -15,8 +19,8 @@ const products = [
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
     price: 99.90,
     old: 110.90,
-    inst: "3x de R$36,33"
-  
+    inst: "3x de R$36,33",
+    sold: 99.90
   },
   {
     id: 2,
@@ -30,7 +34,8 @@ const products = [
     desc: "Leve e compacto, com apenas 40g e 14cm, possui argola para chaveiro, facilitando o transporte em bolsas, mochilas ou junto às chaves.",
     price: 22.90,
     old: 30.00,
-    inst: "2x de R$12,95"
+    inst: "2x de R$12,95",
+    sold: 22.90
   },
   {
     id: 3,
@@ -44,7 +49,8 @@ const products = [
     desc: "Resistente à água e quedas, com 10.000 lúmens, bateria recarregável via USB-C e cinco modos de iluminação.",
     price: 59.90,
     old: 75.90,
-    inst: "3x de R$23,33"
+    inst: "3x de R$23,33",
+    sold: 59.99
   },
   {
     id: 4,
@@ -58,7 +64,8 @@ const products = [
     desc: "Alarme sonoro compacto para emergências, disponível em preto e rosa — fácil de levar no chaveiro ou na bolsa.",
     price: 44.90,
     old: 55.90,
-    inst: "2x de R$24,95"
+    inst: "2x de R$24,95",
+    sold: 44.90
   },
   {
     id: 5,
@@ -72,7 +79,8 @@ const products = [
     desc: "Kit com spray de gengibre, kubotan e alarme pessoal — proteção completa com desconto especial.",
     price: 139.90,
     old: 179.90,
-    inst: "3x de R$46,63"
+    inst: "3x de R$46,63",
+    sold: 133.90
   }
 ];
 
@@ -163,21 +171,45 @@ document.querySelectorAll(".navicons a, .logo-area").forEach(link => {
 
 document.getElementById("searchform").addEventListener("submit", event => {
   event.preventDefault();
-
-  const term = document.getElementById("searchbox").value.toLowerCase().trim();
-  const filtered = term
-    ? products.filter(p => p.name.toLowerCase().includes(term))
-    : products;
-
-  renderProductGrid(filtered, "products-grid");
-
-  const title = document.getElementById("ptitle");
-  title.textContent = term
-    ? `TOTAL DE ${filtered.length} PRODUTOS PARA "${term.toUpperCase()}"`
-    : `TOTAL DE ${filtered.length} PRODUTOS`;
-
+  currentTerm = document.getElementById("searchbox").value.toLowerCase().trim();
+  renderProductsPage();
   showView("view-products");
 });
+// termo digitado na busca (vazio = sem filtro)
+let currentTerm = "";
+
+/** Devolve a lista já filtrada pela busca e ordenada pelo select */
+function getVisibleProducts() {
+  // [...products] cria uma cópia, para não bagunçar a ordem original (usada nos Destaques)
+  const list = currentTerm
+    ? products.filter(p => p.name.toLowerCase().includes(currentTerm))
+    : [...products];
+
+  const mode = document.getElementById("sortselect").value;
+
+  if (mode === "menor")      list.sort((a, b) => a.price - b.price);
+  else if (mode === "maior") list.sort((a, b) => b.price - a.price);
+  else                       list.sort((a, b) => b.sold - a.sold);   // mais vendido
+
+  return list;
+}
+
+/** Redesenha a página de produtos e atualiza o título */
+function renderProductsPage() {
+  const list = getVisibleProducts();
+  renderProductGrid(list, "products-grid");
+
+  const title = document.getElementById("ptitle");
+  title.textContent = currentTerm
+    ? `TOTAL DE ${list.length} PRODUTOS PARA "${currentTerm.toUpperCase()}"`
+    : `TOTAL DE ${list.length} PRODUTOS`;
+}
+
+// quando o cliente muda o select, reordena
+document.getElementById("sortselect").addEventListener("change", renderProductsPage);
+
+// ordena já na primeira abertura (começa em "Mais vendido")
+renderProductsPage();
 
 
 /* ==========================================================================
@@ -185,54 +217,67 @@ document.getElementById("searchform").addEventListener("submit", event => {
    ========================================================================== */
 
 function productDetailHTML(product) {
-  // Usa o array "images" do produto (uma foto por variação). Se não existir, cai no "image" único.
-  const gallery = product.images && product.images.length ? product.images : [product.image];
+  const gallery = product.images && product.images.length ? product.images : [product.image] ;
 
   const thumbnails = gallery
     .map((src, index) => `
       <div class="thumb${index === 0 ? " active" : ""}" onclick="selectProductImage(this, '${src}')">
         <img src="${src}" alt="${product.name} - variação ${index + 1}">
       </div>
+ 
     `)
     .join("");
 
+  // "Spray de gengibre: Untouchable - 50g" -> "UNTOUCHABLE - 50G"; sem ":" usa o nome todo
+  const parts = product.name.split(":");
+  const title = (parts[1] || parts[0]).split("-")[0].trim().toUpperCase();
+  const off = String(discountPercent(product)).replace(".", ",");
+
   return `
-    <div>
+    <div class="pgallery">
       <div class="imgbox"><img id="main-product-img" src="${gallery[0]}" alt="${product.name}"></div>
       <div class="thumbs">${thumbnails}</div>
     </div>
+
     <div class="pinfo">
-      <h2>${product.name.split(":")[0].toUpperCase()}</h2>
-      <span class="badge">SÓ NA PINKFATALITY</span>
+      <div class="ptitle-row">
+           <h2>${(product.name.split(":")[1] || product.name).split("-")[0].trim().toUpperCase()}</h2>
+        <span class="badge">SÓ NA PINKFATALITY</span>
+      </div>
+
       <p class="desc">${product.desc}</p>
+
       <div class="old">${formatMoney(product.old)}</div>
       <div class="price">
         ${formatMoney(product.price)}
-        <span class="off">-${discountPercent(product)}%</span>
+        <span class="off">-${off}%</span>
       </div>
-      <div>Ou ${product.inst}</div>
+      <div class="pinst">Ou ${product.inst}</div>
+
       <div class="qtybox">
-        <button onclick="stepQuantity(-1)">−</button>
-        <input id="qty" value="1" readonly>
-        <button onclick="stepQuantity(1)">+</button>
-        <button class="cta" onclick="addToCart(${product.id}, Number(qty.value))">
+        <button type="button" onclick="stepQuantity(1)">+</button>
+        <input id="qty" value="01" readonly>
+        <button type="button" onclick="stepQuantity(-1)">−</button>
+        <button type="button" class="cta" onclick="addToCart(${product.id}, Number(document.getElementById('qty').value))">
           Adicionar ao carrinho
         </button>
       </div>
+
       <div class="variacoes">
         <h4>VARIAÇÕES:</h4>
         <div class="swatch-row">${variantSwatchesHTML(product)}</div>
       </div>
     </div>
+
+    <img class="pdetail-help" src="img/logos/interrogaçao.png" alt="">
   `;
 }
 
 /** Aumenta ou diminui a quantidade no seletor da página de produto */
 function stepQuantity(delta) {
   const input = document.getElementById("qty");
-  input.value = Math.max(1, Number(input.value) + delta);
+  input.value = String(Math.max(1, Number(input.value) + delta)).padStart(2, "0");
 }
-
 /** Monta as bolinhas de variação (cor) do produto, cada uma clicável */
 function variantSwatchesHTML(product) {
   if (!product.variants || !product.variants.length) return "";

@@ -1395,3 +1395,170 @@ select option[value=""] {
   transition: transform .15s;
 }
 .closeb-badge:hover { transform: scale(1.1); }
+/* ===== DETALHE DO PRODUTO: visual do modelo ===== */
+.pdetail {
+  position: relative;
+  font-family: 'Montserrat', Arial, sans-serif;
+  gap: 48px;
+  padding: 30px 40px 50px;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+/* galeria */
+.pgallery { flex: none; width: 290px; }
+
+.pdetail .imgbox {
+  width: 290px;
+  height: 340px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+}
+.pdetail .imgbox img {
+  max-width: 90%;
+  max-height: 90%;
+  mix-blend-mode: multiply;
+}
+
+.thumbs { gap: 12px; margin-top: 14px; }
+.thumbs .thumb {
+  width: 62px;
+  height: 62px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  border: 2px solid transparent;
+}
+.thumbs .thumb.active { border: 2px solid var(--black); }
+
+/* título + etiqueta lado a lado */
+.pinfo { flex: 1; min-width: 0; max-width: 640px; }
+.ptitle-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.pinfo h2 { font-size: 26px; margin: 0; }
+
+.pdetail .badge {
+  background: var(--pink-light);
+  color: var(--black);
+  border: 2px solid var(--black);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.pinfo p.desc {
+  margin: 12px 0 28px;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* preços */
+.pinfo .old { font-size: 18px; color: var(--black); }
+.pinfo .price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 700;
+}
+.pinfo .off {
+  background: #f7a8cc;
+  color: #444;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.pinst { font-size: 18px; color: #555; margin-top: 4px; }
+
+/* quantidade + botão numa pílula só */
+.qtybox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  background: var(--pink);
+  border-radius: 999px;
+  padding: 6px 16px;
+  color: #fff;
+}
+.qtybox button:not(.cta) {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--pink);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}
+.qtybox input {
+  width: 30px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+.qtybox .cta {
+  background: none;
+  color: #fff;
+  border-left: 2px solid #fff;
+  border-radius: 0;
+  padding: 0 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* variações: caixa larga */
+.variacoes {
+  max-width: none;
+  width: 100%;
+  min-height: 140px;
+  margin-top: 28px;
+  padding: 18px 22px 24px;
+  border: 3px solid var(--black);
+  border-radius: 24px;
+}
+.variacoes h4 { font-size: 13px; }
+.swatch { width: 48px; height: 48px; }
+
+/* interrogação no canto */
+.pdetail-help {
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+  width: 45px;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .pdetail { flex-wrap: wrap; padding: 20px 16px 50px; }
+  .pgallery, .pdetail .imgbox { width: 100%; }
+}
+body:has(#view-product.active) .bandpink::before,
+body:has(#view-products.active) .bandpink::before {
+  content: "PRODUTOS";
+  color: #000;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  line-height: 40px;
+  padding-left: 24px;
+}
+
+body:has(#view-signup.active) .bandpink::before {
+  content: "CADASTRO";
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  line-height: 40px;
+  padding-left: 24px;
+}
+
+#view-product .section-title,
+#view-signup .section-title { display: none; }
