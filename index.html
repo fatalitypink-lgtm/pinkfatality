@@ -199,92 +199,73 @@
   </div>
 </div>
     <!-- ---------- Página: Cadastro ---------- -->
-    <section id="view-signup" class="view">
-      <h2 class="section-title">CADASTRO</h2>
+  <section id="view-signup" class="view">
+  <h2 class="section-title">CADASTRO</h2>
 
-      <form class="signup" id="signupform">
-        <div>
-          <label>NOME</label>
-          <input placeholder="Digite o seu nome..." required>
-        </div>
-        <div>
-          <label>E-MAIL</label>
-          <input type="email" placeholder="Digite o seu e-mail..." required>
-        </div>
-        <div>
-          <label>SOBRENOME</label>
-          <input placeholder="Digite o seu sobrenome..." required>
-        </div>
-        <div>
-          <label>SENHA</label>
-          <input type="password" placeholder="Senha" required>
-        </div>
-        <div>
-          <label>TELEFONE</label>
-          <input placeholder="(21) 00000-0000">
-        </div>
-        <div>
-          <label>CONFIRMAR SENHA</label>
-          <input type="password" placeholder="Senha" required>
-        </div>
-        <div>
-          <label>CPF</label>
-          <input placeholder="Digite o seu cpf...">
-        </div>
-        <div></div>
-        <div class="full">
-          <fieldset class="campo-data">
-  <legend>Data de nascimento</legend>
+  <form class="signup" id="signupform">
 
-  <div class="campo-data__selects">
-    <label class="sr-only" for="dia">Dia</label>
-    <select id="dia" name="dia" autocomplete="bday-day" required>
-      <option value="">Dia</option>
-    </select>
+    <!-- coluna esquerda -->
+    <div class="col">
+      <label for="nome">NOME</label>
+      <input id="nome" placeholder="Digite o seu nome..." required>
 
-    <label class="sr-only" for="mes">Mês</label>
-    <select id="mes" name="mes" autocomplete="bday-month" required>
-      <option value="">Mês</option>
-      <option value="1">Janeiro</option>
-      <option value="2">Fevereiro</option>
-      <option value="3">Março</option>
-      <option value="4">Abril</option>
-      <option value="5">Maio</option>
-      <option value="6">Junho</option>
-      <option value="7">Julho</option>
-      <option value="8">Agosto</option>
-      <option value="9">Setembro</option>
-      <option value="10">Outubro</option>
-      <option value="11">Novembro</option>
-      <option value="12">Dezembro</option>
-    </select>
+      <label for="sobrenome">SOBRENOME</label>
+      <input id="sobrenome" placeholder="Digite o seu sobrenome..." required>
 
-    <label class="sr-only" for="ano">Ano</label>
-    <select id="ano" name="ano" autocomplete="bday-year" required>
-      <option value="">Ano</option>
-    </select>
-  </div>
-</fieldset>
-<script>
-  const dia = document.getElementById("dia");
-  const ano = document.getElementById("ano");
+      <label for="tel">TELEFONE</label>
+      <input id="tel" placeholder="(21) 00000-0000">
 
-  for (let d = 1; d <= 31; d++) {
-    dia.add(new Option(d, d));
-  }
+      <label for="cpf">CPF</label>
+      <input id="cpf" placeholder="Digite o seu cpf...">
 
-  const anoAtual = new Date().getFullYear();
-  for (let a = anoAtual; a >= anoAtual - 100; a--) {
-    ano.add(new Option(a, a));
-  }
-</script>
-          </div>
+      <fieldset class="campo-data">
+        <legend>DATA DE NASCIMENTO</legend>
+        <div class="campo-data__selects">
+          <select id="dia" aria-label="Dia" required><option value="">DIA</option></select>
+          <select id="mes" aria-label="Mês" required>
+            <option value="">MÊS</option>
+            <option value="1">Janeiro</option><option value="2">Fevereiro</option>
+            <option value="3">Março</option><option value="4">Abril</option>
+            <option value="5">Maio</option><option value="6">Junho</option>
+            <option value="7">Julho</option><option value="8">Agosto</option>
+            <option value="9">Setembro</option><option value="10">Outubro</option>
+            <option value="11">Novembro</option><option value="12">Dezembro</option>
+          </select>
+          <select id="ano" aria-label="Ano" required><option value="">ANO</option></select>
         </div>
-        <div class="full">
-          <button type="submit">CONCLUIR CADASTRO ›</button>
-        </div>
-      </form>
-    </section>
+      </fieldset>
+    </div>
+
+    <!-- coluna direita -->
+    <div class="col">
+      <label for="email">E-MAIL</label>
+      <input id="email" type="email" placeholder="Digite o seu e-mail..." required>
+
+      <label for="senha">SENHA</label>
+      <div class="pw">
+        <input id="senha" type="password" placeholder="Senha" required>
+        <button type="button" class="eye" aria-label="Mostrar senha"></button>
+      </div>
+      <ul class="rules" id="rules">
+        <li data-rule="len">Mínimo 8 caracteres</li>
+        <li data-rule="upper">Pelo menos 1 letra maiúscula</li>
+        <li data-rule="lower">Pelo menos 1 letra minúscula</li>
+        <li data-rule="num">Pelo menos 1 número</li>
+        <li data-rule="special">Pelo menos 1 caractere especial</li>
+      </ul>
+
+      <label for="senha2">CONFIRMAR SENHA</label>
+      <div class="pw">
+        <input id="senha2" type="password" placeholder="Senha" required>
+        <button type="button" class="eye" aria-label="Mostrar senha"></button>
+      </div>
+
+      <button type="submit" class="concluir">CONCLUIR CADASTRO ›</button>
+    </div>
+  </form>
+
+  <img class="signup-help" src="img/logos/interrogaçao.png" alt="">
+</section>
 
   </main>
 

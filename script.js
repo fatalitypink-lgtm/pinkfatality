@@ -392,14 +392,24 @@ document.getElementById("checkoutbtn").addEventListener("click", () => {
    8. PAINÉIS LATERAIS (carrinho / login) E OVERLAY
    ========================================================================== */
 
+function syncNavButtons() {
+  const profileOpen = document.getElementById("profile-drawer").classList.contains("open");
+  const cartOpen    = document.getElementById("cart-drawer").classList.contains("open");
+  document.getElementById("profilebtn").classList.toggle("active", profileOpen);
+  document.getElementById("cartbtn").classList.toggle("active", cartOpen);
+}
+
 function openDrawer(drawerId) {
   document.getElementById(drawerId).classList.add("open");
   document.getElementById("overlay").classList.add("show");
+  syncNavButtons();
 }
 
 function closeAllDrawers() {
   document.querySelectorAll(".drawer").forEach(drawer => drawer.classList.remove("open"));
+  document.getElementById("added-modal").classList.remove("open");
   document.getElementById("overlay").classList.remove("show");
+  syncNavButtons();
 }
 
 document.getElementById("cartbtn").addEventListener("click", () => openDrawer("cart-drawer"));
@@ -654,3 +664,35 @@ function renderCart() {
   document.getElementById("checkoutbtn").textContent =
     `Finalizar compra (${String(totalCount).padStart(2, "0")})`;
 }
+/* ===== CADASTRO: datas, olho da senha e regras ===== */
+(function () {
+  const dia = document.getElementById("dia");
+  const ano = document.getElementById("ano");
+  for (let d = 1; d <= 31; d++) dia.add(new Option(d, d));
+  const anoAtual = new Date().getFullYear();
+  for (let a = anoAtual; a >= anoAtual - 100; a--) ano.add(new Option(a, a));
+
+  // mostrar/ocultar senha
+  document.querySelectorAll(".pw .eye").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = btn.parentElement.querySelector("input");
+      const show = input.type === "password";
+      input.type = show ? "text" : "password";
+      btn.classList.toggle("on", show);
+    });
+  });
+
+  // regras da senha (ficam rosa quando cumpridas)
+  const checks = {
+    len:     v => v.length >= 8,
+    upper:   v => /[A-Z]/.test(v),
+    lower:   v => /[a-z]/.test(v),
+    num:     v => /\d/.test(v),
+    special: v => /[^A-Za-z0-9]/.test(v),
+  };
+  document.getElementById("senha").addEventListener("input", e => {
+    document.querySelectorAll("#rules li").forEach(li => {
+      li.classList.toggle("ok", checks[li.dataset.rule](e.target.value));
+    });
+  });
+})();
