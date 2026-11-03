@@ -1770,3 +1770,41 @@ body:has(#profile-drawer.open) #profilebtn,
 body:has(#cart-drawer.open) #cartbtn {
   color: var(--pink);
 }
+/* ===== DESTAQUES: versão maior e mais espaçada ===== */
+.destaques { padding: 50px 24px 80px; }
+
+.dest-wrap {
+  width: min(1500px, 100%);
+  gap: 20px;
+}
+
+#home-grid {
+  flex: 0 1 1360px;      /* 4 cards de 290px + 3 espaços de 60px + respiro */
+  gap: 60px;
+  padding: 16px 16px 40px;
+  scroll-padding-left: 16px;
+}
+
+#home-grid .card { flex: 0 0 290px; }
+
+/* parte branca com a foto */
+#home-grid .card .img { height: 240px; }
+
+/* texto do bloco rosa */
+#home-grid .card .info { padding: 18px 20px; gap: 8px; }
+#home-grid .card .name  { font-size: 17px; }
+#home-grid .card .old   { font-size: 14px; }
+#home-grid .card .price { font-size: 20px; }
+#home-grid .card .off   { font-size: 12px; }
+#home-grid .card .inst  { font-size: 14px; }
+
+#home-grid .addbtn { padding: 14px; font-size: 15px; margin-top: 16px; }
+
+/* setas */
+.dest-arrow {
+  width: 56px;
+  height: 56px;
+  margin-top: 170px;     /* altura do meio da parte colorida */
+}
+
+.dest-help { width: 60px; right: 40px; }

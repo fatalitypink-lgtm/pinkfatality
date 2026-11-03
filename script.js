@@ -595,7 +595,7 @@ function closeAllDrawers() {
   document.getElementById("overlay").classList.remove("show");
 }
 const homeGrid = document.getElementById("home-grid");
-const STEP = 244; // largura do card (220) + espaço (24)
+const STEP = 350; // largura do card (290) + espaço (60)
 
 document.getElementById("dest-next").addEventListener("click", () => {
   const noFim = homeGrid.scrollLeft + homeGrid.clientWidth >= homeGrid.scrollWidth - 4;
