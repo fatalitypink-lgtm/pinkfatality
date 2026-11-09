@@ -6,22 +6,51 @@ const products = [
   {
     id: 1,
     image: "img/produtos/IMG_1811.PNG",
-        images: [
-  "img/produtos/IMG_1811.PNG",
-  "img/IMG_1756.JPG.jpeg",
-  "img/produtos/IMG_1811.PNG"    // nova imagem
-],
-    variants: [
-      { label: "Padrão", color: "#141114", image: "img/produtos/IMG_1811.PNG" }
-      // adicione mais variações aqui, ex: { label: "Rosa", color: "#ec1e79", image: "img/....png" }
+
+    images: [
+      "img/produtos/IMG_1811.PNG",
+      "img/IMG_1756.JPG.jpeg",
+      "img/produtos/IMG_1811.PNG"
     ],
+
+    variants: [
+      {
+        label: "Padrão",
+        color: "#141114",
+        image: "img/produtos/IMG_1811.PNG"
+      }
+    ],
+
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
+
     price: 99.90,
     old: 110.90,
     inst: "3x de R$36,33",
-    sold: 99.90
+    sold: 99.90,
+
+    details: {
+      highlights: [
+        "Alcance de até 2,5 metros",
+        "Trava contra acionamento acidental",
+        "Compacto: 50g"
+      ],
+
+      usage: [
+        "Escreva aqui o passo 1",
+        "Escreva aqui o passo 2",
+        "Escreva aqui o passo 3"
+      ],
+
+      specs: {
+        "Peso": "50g",
+        "Alcance": "até 2,5 metros"
+      }
+    }
   },
+
+  // O segundo produto começa aqui...
+
   {
     id: 2,
     image: "img/kubotan.jpg.jpeg",
@@ -302,19 +331,76 @@ function selectVariant(swatchEl, src) {
   swatchEl.classList.add("active");
 }
 
-function openProduct(id) {
-  const product = products.find(p => p.id === id);
-  document.getElementById("product-detail").innerHTML = productDetailHTML(product);
-  showView("view-product");
-}
-
 /** Troca a foto grande do produto pela da miniatura clicada, e marca ela como ativa */
 function selectProductImage(thumbEl, src) {
   document.getElementById("main-product-img").src = src;
   document.querySelectorAll(".thumbs .thumb").forEach(thumb => thumb.classList.remove("active"));
   thumbEl.classList.add("active");
 }
+/** Monta a área de abas (Descrição / Como usar / Especificações) */
+function productTabsHTML(product) {
+  const d = product.details || {};
+  const tabs = [];
 
+  tabs.push({
+    title: "Descrição",
+    html: `<p>${product.desc}</p>` +
+      (d.highlights ? `<ul>${d.highlights.map(h => `<li>${h}</li>`).join("")}</ul>` : "")
+  });
+
+  if (d.usage) {
+    tabs.push({
+      title: "Como usar",
+      html: `<ol>${d.usage.map(step => `<li>${step}</li>`).join("")}</ol>`
+    });
+  }
+
+  if (d.specs) {
+    tabs.push({
+      title: "Especificações",
+      html: `<table class="spec">${Object.entries(d.specs)
+        .map(([name, value]) => `<tr><th>${name}</th><td>${value}</td></tr>`)
+        .join("")}</table>`
+    });
+  }
+
+  const buttons = tabs.map((tab, i) => `
+    <button type="button" role="tab" id="ptab-${i}"
+            class="ptab${i === 0 ? " active" : ""}"
+            aria-selected="${i === 0}" aria-controls="ptab-panel-${i}"
+            onclick="selectProductTab(${i})">${tab.title}</button>
+  `).join("");
+
+  const panels = tabs.map((tab, i) => `
+    <div role="tabpanel" id="ptab-panel-${i}" aria-labelledby="ptab-${i}"
+         class="ptab-panel${i === 0 ? " active" : ""}">${tab.html}</div>
+  `).join("");
+
+  return `
+    <div class="ptabs">
+      <div class="ptab-list" role="tablist">${buttons}</div>
+      <div class="ptab-panels">${panels}</div>
+    </div>
+  `;
+}
+
+/** Troca a aba ativa */
+function selectProductTab(index) {
+  document.querySelectorAll(".ptab").forEach((btn, i) => {
+    btn.classList.toggle("active", i === index);
+    btn.setAttribute("aria-selected", i === index);
+  });
+  document.querySelectorAll(".ptab-panel").forEach((panel, i) => {
+    panel.classList.toggle("active", i === index);
+  });
+}
+
+function openProduct(id) {
+  const product = products.find(p => p.id === id);
+  document.getElementById("product-detail").innerHTML = productDetailHTML(product);
+  document.getElementById("product-tabs").innerHTML = productTabsHTML(product);  // NOVO
+  showView("view-product");
+}
 
 /* ==========================================================================
    7. CARRINHO DE COMPRAS
