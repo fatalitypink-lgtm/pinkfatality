@@ -24,10 +24,10 @@ const products = [
     name: "Spray de gengibre: Untouchable - 50g",
     desc: "Um spray de gengibre compacto, seguro e de fácil uso, com alcance de até 2,5 metros e trava contra acionamento acidental.",
 
-    price: 99.90,
-    old: 110.90,
+    price: 129.90,
+    old: 139.99,
     inst: "3x de R$36,33",
-    sold: 99.90,
+    sold: 129.90,
 
     details: {
       highlights: [
@@ -61,10 +61,10 @@ const products = [
     ],
     name: "Kubotan",
     desc: "Leve e compacto, com apenas 40g e 14cm, possui argola para chaveiro, facilitando o transporte em bolsas, mochilas ou junto às chaves.",
-    price: 22.90,
-    old: 30.00,
+    price: 22.99,
+    old: 25.99,
     inst: "2x de R$12,95",
-    sold: 22.90
+    sold: 22.99
   },
   {
     id: 3,
@@ -76,10 +76,10 @@ const products = [
     ],
     name: "Lanterna tática",
     desc: "Resistente à água e quedas, com 10.000 lúmens, bateria recarregável via USB-C e cinco modos de iluminação.",
-    price: 59.90,
-    old: 75.90,
+    price: 64.99,
+    old: 75.99,
     inst: "3x de R$23,33",
-    sold: 59.99
+    sold: 64.99
   },
   {
     id: 4,
@@ -91,10 +91,10 @@ const products = [
     ],
     name: "Alarme pessoal",
     desc: "Alarme sonoro compacto para emergências, disponível em preto e rosa — fácil de levar no chaveiro ou na bolsa.",
-    price: 44.90,
-    old: 55.90,
+    price: 48.99,
+    old: 53.99,
     inst: "2x de R$24,95",
-    sold: 44.90
+    sold: 48.99
   },
   {
     id: 5,
@@ -106,10 +106,10 @@ const products = [
     ],
     name: "Kit promocional",
     desc: "Kit com spray de gengibre, kubotan e alarme pessoal — proteção completa com desconto especial.",
-    price: 139.90,
-    old: 179.90,
+    price: 215.99,
+    old: 139.99,
     inst: "3x de R$46,63",
-    sold: 133.90
+    sold: 215.99
   }
 ];
 
