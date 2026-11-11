@@ -89,7 +89,7 @@ header {
 .search {
   display: flex;
   border: 3px solid var(--black);
-  border-radius: 0 20px 20px 0;   /* ALTERADO: lado esquerdo (lupa rosa) quadrado, direito arredondado */
+  border-radius: 0 20px 20px 0;
   overflow: hidden;
   flex: 1;
   min-width: 180px; 
@@ -122,20 +122,19 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;              /* ALTERADO: divide o espaço com .search e .navicons, em vez de ocupar 100% sozinha */
+  flex: 1;
   margin: 0;
   padding: 0;
 }
 
 .logo-img {
-  height: 110px;   /* era 70px, ajuste como preferir */
+  height: 110px;
   width: auto;
   max-width: 100%;
   display: block;
   margin: 0 auto;
 }
 
-/* ADICIONADO: imagem do logo, com espaço em volta para não ficar justa */
 .logo img {
   display: block;
   height: 32px;
@@ -184,30 +183,31 @@ header {
   content: ""; position: absolute; left: 0; top: -40px;
   width: 230px; height: 40px; background: #ee3b8a;
   border-radius: 40px 0 0 0;
-  z-index: 2;   /* claro: na frente */
+  z-index: 2;
 }
 .bandpink::after {
   content: ""; position: absolute; left: 200px; top: -32px;
   width: 170px; height: 32px; background: #c9105a;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
-  z-index: 1;   /* escuro: atrás */
+  z-index: 1;
 }
-header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
+header { padding: 14px 14px 0; }
 
 .navrow { padding: 10px 0 0; }
 
-.bandpink { margin-top: 50px; }       /* abre espaço para as abinhas */
+.bandpink { margin-top: 50px; }
 
-/* ícones mais próximos do modelo */
 .navicons { gap: 30px; margin-right: 40px; }
 .navicons .ic { width: 40px; height: 40px; }
+
+
 /* ==========================================================================
    SEÇÃO HERO (banner da página inicial)
    ========================================================================== */
 
 .hero {
   display: block;
-  overflow: visible;   /* era hidden */
+  overflow: visible;
   background: linear-gradient(180deg, #f9c9df 0%, #fde8f1 60%, #ffffff 100%);
   padding-top: 120px;
 }
@@ -216,7 +216,7 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 .stage {
   position: relative;
   width: 100%;
-  height: 500px;       /* era 400px */
+  height: 500px;
 }
 
 .hero .tag {
@@ -310,6 +310,7 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 }
 .folder1 { left: 1.5%; top: 20px; width: 60px; }
 
+
 /* ==========================================================================
    GRADE DE PRODUTOS (usada na Home e na página Produtos)
    ========================================================================== */
@@ -323,7 +324,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
     #fff;
 }
 
-/* a largura do wrap é a de 4 cards + respiro para a sombra */
 .dest-wrap {
   display: flex;
   align-items: flex-start;
@@ -335,10 +335,10 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 
 #home-grid {
   display: flex;
-  justify-content: flex-start;   /* começa no primeiro card, sem cortar */
+  justify-content: flex-start;
   gap: 24px;
-  flex: 0 1 968px;               /* 4 cards + respiro */
-  min-width: 0;                  /* permite encolher e rolar dentro do flex */
+  flex: 0 1 968px;
+  min-width: 0;
   padding: 10px 8px 30px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -352,7 +352,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   scroll-snap-align: start;
 }
 
-/* setas ao lado dos cards, na altura do meio da parte colorida */
 .dest-arrow {
   flex: none;
   width: 44px;
@@ -385,7 +384,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   padding: 20px 24px 0;
 }
 
-/* Título "DESTAQUES" da página inicial: centralizado e mais afastado do banner e dos produtos */
 #view-home .section-title {
   text-align: center;
   margin-top: 30px;
@@ -426,7 +424,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
-/* parte branca com a foto */
 .card .img {
   position: relative;
   height: 170px;
@@ -439,10 +436,9 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 .card .img img {
   max-width: 100%;
   max-height: 100%;
-  mix-blend-mode: multiply; /* faz o fundo cinza-claro das fotos sumir */
+  mix-blend-mode: multiply;
 }
 
-/* coração pixelado no canto */
 .card .fav {
   position: absolute;
   top: 10px;
@@ -464,7 +460,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   background-image: url("img/logos/coracao-card-ativo.png");
 }
 
-/* bloco rosa colado na imagem */
 .card .info {
   margin: 0;
   padding: 14px 16px;
@@ -477,15 +472,12 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 .card .price { font-size: 16px; font-weight: 700; }
 .card .inst  { font-size: 12px; }
 
-/* selo de desconto cinza */
 .card .off {
   background: #e6e6e6;
   color: #444;
   font-size: 10px;
   font-weight: 600;
 }
-
-/* botão separado, abaixo do card */
 .addbtn {
   margin: 12px 0 0;
   padding: 10px;
@@ -526,7 +518,7 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 .card .desc { display: none; }
 .addbtn,
 .card .addbtn {
-  border-radius: 999px;      /* formato de pílula, como no modelo */
+  border-radius: 999px;
   border: 2.5px solid #ec2f87;
   background: #fff;
   color: var(--black);
@@ -559,7 +551,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
-/* ADICIONADO: ao passar o ponteiro, fundo rosa e texto preto */
 .addbtn:hover {
   background: var(--pink);
   color: var(--black);
@@ -595,7 +586,7 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   padding: 0;
   border: none;
   background: url("img/botao-x.png") center / contain no-repeat;
-  image-rendering: pixelated;   /* mantém o visual pixelado nítido */
+  image-rendering: pixelated;
   cursor: pointer;
   z-index: 10;
   transition: transform .15s;
@@ -603,7 +594,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 
 .added-close:hover { transform: scale(1.1); }
 
-/* topo: produto adicionado */
 .added-top {
   display: flex;
   gap: 14px;
@@ -650,7 +640,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 }
 .added-top .ainst { font-size: 12px; }
 
-/* sugestões */
 .added-body { padding: 14px 16px 6px; }
 .added-sub { color: var(--pink); font-size: 14px; margin-bottom: 10px; }
 
@@ -690,7 +679,6 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
 .added-dots span { width: 6px; height: 6px; border-radius: 50%; background: #ffa9cf; }
 .added-dots span.on { width: 22px; border-radius: 6px; background: var(--pink); }
 
-/* botões de baixo */
 .added-actions { display: flex; gap: 10px; padding: 12px 16px 16px; }
 .added-actions button {
   flex: 1;
@@ -731,6 +719,7 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   object-fit: contain;
 }
 
+
 .thumbs {
   display: flex;
   gap: 10px;
@@ -747,12 +736,12 @@ header { padding: 14px 14px 0; }      /* alinha com a .topbar (margin 14px) */
   justify-content: center;
   font-size: 26px;
   border: 1px solid #eee;
-  cursor: pointer;             /* ADICIONADO: indica que é clicável */
+  cursor: pointer;
   transition: border-color .15s;
 }
 
 .thumbs div.active {
-  border: 2px solid var(--pink);  /* ADICIONADO: destaca a miniatura selecionada */
+  border: 2px solid var(--pink);
 }
 
 .thumbs div img {
@@ -881,18 +870,18 @@ footer {
   overflow: hidden;
 }
 footer {
-  padding-top: 6px;              /* faixa quase colada no topo, como no modelo */
+  padding-top: 6px;
   margin: 0 14px 14px;
 }
 
 .footer-topbar {
   background: #f4a6c8;
-  margin: 0 -14px 28px;          /* -14px anula a margem lateral da .topbar e aproxima das bordas */
+  margin: 0 -14px 28px;
   z-index: 1;
 }
 
 .footer-topbar .topbar-icons {
-  color: #000;                   /* ☺ preto e visível */
+  color: #000;
   font-size: 22px;
 }
 .fgrid {
@@ -935,9 +924,9 @@ footer .bottom > span:first-child {
 }
 
 footer .social {
-  height: 50px;      /* ajuste conforme o tamanho que quiser */
+  height: 50px;
   width: auto;
-  flex: none;        /* impede a imagem de ser esmagada pelo texto */
+  flex: none;
 }
 footer .social img {
   height: 36px;
@@ -970,6 +959,7 @@ footer .social img {
 #overlay.show {
   display: block;
 }
+
 
 .drawer {
   position: fixed;
@@ -1014,7 +1004,6 @@ footer .social img {
   font-size: 18px;
 }
 
-/* Cabeçalho do carrinho: branco, com linha rosa embaixo e ícone de carrinho */
 .dhead-cart {
   position: relative;
   background: #fff;
@@ -1034,7 +1023,6 @@ footer .social img {
   color: var(--pink);
 }
 
-/* Item dentro do carrinho */
 .citem {
   display: flex;
   gap: 12px;
@@ -1130,7 +1118,6 @@ footer .social img {
   color: #fff;
 }
 
-/* Formulário de login (dentro do painel "Perfil") */
 .loginform {
   padding: 20px;
 }
@@ -1171,16 +1158,25 @@ footer .social img {
   display: block;
   width: 50px;
   height: 50px;
-  background-color: currentColor;   /* pega a cor do texto */
+  background-color: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
+}
+
+/* NOVO: o ícone ♫ do Playlist é texto, não imagem — sem máscara */
+.navicons .ic.note {
+  background: none;
+  -webkit-mask: none;
+  mask: none;
+  font-size: 34px;
+  line-height: 50px;
+  text-align: center;
 }
 
 /* ==========================================================================
    PÁGINA DE CADASTRO
    ========================================================================== */
 
-/* ===== CADASTRO: visual do modelo ===== */
 #view-signup {
   background:
     radial-gradient(circle, #e3e3e3 1px, transparent 1.3px) 0 0 / 6px 6px,
@@ -1236,7 +1232,6 @@ footer .social img {
 .signup input:focus,
 .signup select:focus { box-shadow: 0 0 0 3px #ffc9e1; }
 
-/* senha com olho */
 .pw { position: relative; }
 .pw input { padding-right: 38px; }
 .eye {
@@ -1254,7 +1249,6 @@ footer .social img {
 }
 .eye.on { opacity: .5; }
 
-/* regras da senha */
 .rules {
   margin: 8px 0 0 16px;
   font-size: 8px;
@@ -1263,7 +1257,6 @@ footer .social img {
 }
 .rules li.ok { color: var(--pink); font-weight: 700; }
 
-/* data de nascimento */
 .campo-data { border: 0; padding: 0; margin: 14px 0 0; }
 .campo-data__selects { display: flex; gap: 10px; }
 .campo-data select {
@@ -1284,7 +1277,6 @@ footer .social img {
 select option { background: #fff; color: var(--black); }
 select option:checked { background: var(--pink); color: #fff; }
 
-/* botão */
 .signup .concluir {
   align-self: flex-end;
   width: 100%;
@@ -1299,7 +1291,6 @@ select option:checked { background: var(--pink); color: #fff; }
 }
 .signup .concluir:hover { background: var(--pink); }
 
-/* interrogação no canto */
 .signup-help {
   position: absolute;
   right: 40px;
@@ -1314,6 +1305,7 @@ select option:checked { background: var(--pink); color: #fff; }
   .signup .concluir { margin-top: 24px; }
   .signup-help { display: none; }
 }
+
 /* ==========================================================================
    RESPONSIVO
    ========================================================================== */
@@ -1331,25 +1323,22 @@ select option:checked { background: var(--pink); color: #fff; }
     grid-template-columns: 1fr;
   }
 }
+
 /* ===== CARRINHO: visual do modelo ===== */
 .drawer { font-family: 'Montserrat', Arial, sans-serif; }
 
-/* painel em coluna: o bloco rosa fica sempre no fundo */
 #cart-drawer {
   display: flex;
   flex-direction: column;
 }
 #cart-items { flex: 1; }
 
-/* selo de fechar: traz pra dentro do painel (o overflow cortava) */
 .dhead-cart { padding-left: 46px; }
 
-
-/* item */
 .citem {
   background: #c9105a;
   border-radius: 24px;
-  padding: 0 14px 0 0;     /* foto encostada na esquerda */
+  padding: 0 14px 0 0;
   gap: 12px;
 }
 .citem .cimg {
@@ -1391,7 +1380,6 @@ select option:checked { background: var(--pink); color: #fff; }
 .citem .cinst { font-size: 11px; }
 .citem .cqty { font-size: 14px; }
 
-/* bloco rosa-escuro do fundo */
 .cart-footer {
   background: #c9105a;
   color: #fff;
@@ -1420,7 +1408,6 @@ select option:checked { background: var(--pink); color: #fff; }
   color: #fff;
 }
 
-/* botões: os dois rosa-claro, como no modelo */
 .cart-footer .cactions { padding: 14px 0 0; }
 .cart-footer .cactions button,
 .cart-footer .cactions button.main {
@@ -1447,6 +1434,7 @@ select option:checked { background: var(--pink); color: #fff; }
   transition: transform .15s;
 }
 .closeb-badge:hover { transform: scale(1.1); }
+
 /* ===== DETALHE DO PRODUTO: visual do modelo ===== */
 .pdetail {
   position: relative;
@@ -1457,7 +1445,6 @@ select option:checked { background: var(--pink); color: #fff; }
   align-items: flex-start;
 }
 
-/* galeria */
 .pgallery { flex: none; width: 290px; }
 
 .pdetail .imgbox {
@@ -1484,7 +1471,6 @@ select option:checked { background: var(--pink); color: #fff; }
 }
 .thumbs .thumb.active { border: 2px solid var(--black); }
 
-/* título + etiqueta lado a lado */
 .pinfo { flex: 1; min-width: 0; max-width: 640px; }
 .ptitle-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .pinfo h2 { font-size: 26px; margin: 0; }
@@ -1507,7 +1493,6 @@ select option:checked { background: var(--pink); color: #fff; }
   line-height: 1.4;
 }
 
-/* preços */
 .pinfo .old { font-size: 18px; color: var(--black); }
 .pinfo .price {
   display: flex;
@@ -1526,7 +1511,6 @@ select option:checked { background: var(--pink); color: #fff; }
 }
 .pinst { font-size: 18px; color: #555; margin-top: 4px; }
 
-/* quantidade + botão numa pílula só */
 .qtybox {
   display: inline-flex;
   align-items: center;
@@ -1567,7 +1551,6 @@ select option:checked { background: var(--pink); color: #fff; }
   font-weight: 700;
 }
 
-/* variações: caixa larga */
 .variacoes {
   max-width: none;
   width: 100%;
@@ -1580,7 +1563,6 @@ select option:checked { background: var(--pink); color: #fff; }
 .variacoes h4 { font-size: 13px; }
 .swatch { width: 48px; height: 48px; }
 
-/* interrogação no canto */
 .pdetail-help {
   position: absolute;
   right: 40px;
@@ -1614,6 +1596,7 @@ body:has(#view-signup.active) .bandpink::before {
 
 #view-product .section-title,
 #view-signup .section-title { display: none; }
+
 /* ===== CADASTRO: versão maior ===== */
 .signup {
   max-width: 1100px;
@@ -1673,32 +1656,31 @@ body:has(#view-signup.active) .bandpink::before {
 }
 
 #view-signup { min-height: 640px; }
+
 /* ===== PAINEL DE LOGIN: visual do modelo ===== */
 .drawer.small {
   width: 300px;
-  top: 150px;              /* ajuste para a setinha ficar embaixo do ícone Perfil */
-  right: -340px;           /* escondido fora da tela */
+  top: 150px;
+  right: -340px;
   height: auto;
-  overflow: visible;       /* deixa a setinha aparecer */
+  overflow: visible;
   background: #f9c9df;
   border-radius: 24px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
   font-family: 'Montserrat', Arial, sans-serif;
 }
-.drawer.small.open { right: 30px; }   /* distância da borda direita */
+.drawer.small.open { right: 30px; }
 
-/* setinha apontando para o ícone Perfil */
 .drawer.small::before {
   content: "";
   position: absolute;
   top: -16px;
-  right: 56px;             /* ajuste para alinhar com o ícone */
+  right: 56px;
   border-left: 14px solid transparent;
   border-right: 14px solid transparent;
   border-bottom: 18px solid #ec2f87;
-}
+ }
 
-/* título centralizado, sem o X */
 .drawer.small .dhead {
   justify-content: center;
   background: #ec2f87;
@@ -1706,9 +1688,8 @@ body:has(#view-signup.active) .bandpink::before {
   padding: 12px 16px;
   font-size: 13px;
 }
-.drawer.small .closeb { display: none; }   /* clicar fora do painel já fecha */
+.drawer.small .closeb { display: none; }
 
-/* formulário */
 .drawer.small .loginform { padding: 14px 16px 18px; }
 
 .drawer.small .loginform label {
@@ -1727,7 +1708,6 @@ body:has(#view-signup.active) .bandpink::before {
 }
 .drawer.small .loginform input:focus { box-shadow: 0 0 0 3px #ffc9e1; }
 
-/* botão entrar */
 .drawer.small .loginform .enter {
   margin-top: 14px;
   padding: 10px;
@@ -1739,7 +1719,6 @@ body:has(#view-signup.active) .bandpink::before {
 }
 .drawer.small .loginform .enter:hover { background: var(--pink); }
 
-/* links de baixo como botões, com traço no meio */
 .drawer.small .loginform .row {
   justify-content: center;
   gap: 18px;
@@ -1770,6 +1749,7 @@ body:has(#profile-drawer.open) #profilebtn,
 body:has(#cart-drawer.open) #cartbtn {
   color: var(--pink);
 }
+
 /* ===== DESTAQUES: versão maior e mais espaçada ===== */
 .destaques { padding: 50px 24px 80px; }
 
@@ -1779,7 +1759,7 @@ body:has(#cart-drawer.open) #cartbtn {
 }
 
 #home-grid {
-  flex: 0 1 1360px;      /* 4 cards de 290px + 3 espaços de 60px + respiro */
+  flex: 0 1 1360px;
   gap: 60px;
   padding: 16px 16px 40px;
   scroll-padding-left: 16px;
@@ -1787,10 +1767,8 @@ body:has(#cart-drawer.open) #cartbtn {
 
 #home-grid .card { flex: 0 0 290px; }
 
-/* parte branca com a foto */
 #home-grid .card .img { height: 240px; }
 
-/* texto do bloco rosa */
 #home-grid .card .info { padding: 18px 20px; gap: 8px; }
 #home-grid .card .name  { font-size: 17px; }
 #home-grid .card .old   { font-size: 14px; }
@@ -1800,14 +1778,14 @@ body:has(#cart-drawer.open) #cartbtn {
 
 #home-grid .addbtn { padding: 14px; font-size: 15px; margin-top: 16px; }
 
-/* setas */
 .dest-arrow {
   width: 56px;
   height: 56px;
-  margin-top: 170px;     /* altura do meio da parte colorida */
+  margin-top: 170px;
 }
 
 .dest-help { width: 60px; right: 40px; }
+
 /* ===== HERO: igual ao modelo, tudo em proporção ===== */
 .hero { zoom: 1; padding-top: 40px; }
 
@@ -1821,7 +1799,6 @@ body:has(#cart-drawer.open) #cartbtn {
 .deco { position: absolute; pointer-events: none; z-index: 0; }
 .win, .hero .tag, .hits, .start-btn { z-index: 1; }
 
-/* janelas */
 .w1 { left: 16.4%; top: 10%;   width: 19%; }
 .w2 { left: 37.8%; top: 12.5%; width: 19%; }
 .w3 { left: 61.8%; top: 41%;   width: 30.7%; }
@@ -1829,17 +1806,14 @@ body:has(#cart-drawer.open) #cartbtn {
 .w3 .foto            { aspect-ratio: 16 / 9; }
 .win .foto { filter: brightness(1.15) saturate(1.1); }
 
-/* "Looks cute. HITS Different!" */
 .hits { left: 64%; top: 0; width: 27%; }
 
-/* texto */
 .hero .tag {
   left: 0; top: 56%;
   width: 15%; min-width: 0;
   font-size: clamp(7px, 1.1vw, 14px);
 }
 
-/* decorações */
 .folder1 { left: 1.8%;  top: 8%;  width: 3.4%; }
 .star1   { left: 4.5%;  top: 18%; width: 10%; }
 .burst   { left: 13%;   top: 78%; width: 6.7%; }
@@ -1848,7 +1822,6 @@ body:has(#cart-drawer.open) #cartbtn {
 .hearts  { left: 84.5%; top: 92%; width: 6%; }
 .help    { left: 92%;   top: 80%; width: 5.4%; }
 
-/* botão "start" entre as janelas 1 e 2 */
 .start-btn {
   position: absolute;
   left: 32%; top: 22%;
@@ -1859,6 +1832,7 @@ body:has(#cart-drawer.open) #cartbtn {
   font-size: clamp(5px, .6vw, 8px);
   padding: .3em 1.2em;
 }
+
 /* ===== ABAS DO PRODUTO ===== */
 #product-tabs {
   padding: 0 40px 60px;
@@ -1902,7 +1876,6 @@ body:has(#cart-drawer.open) #cartbtn {
 .ptab-panel li { margin-bottom: 6px; }
 .ptab-panel li::marker { color: var(--pink); font-weight: 700; }
 
-/* tabela de especificações */
 .spec { width: 100%; border-collapse: collapse; }
 .spec th,
 .spec td {
@@ -1921,4 +1894,102 @@ body:has(#cart-drawer.open) #cartbtn {
   #product-tabs { padding: 0 16px 50px; }
   .ptab { font-size: 9px; padding: 8px 12px; }
   .ptab-panels { padding: 18px; }
+}
+
+
+/* ==========================================================================
+   NOVO: PLAYLIST / COMERCIAL (seção no scroll da Home)
+   ========================================================================== */
+
+.playlist-section { background: #fff; padding: 50px 0 60px; }
+
+.player {
+  position: relative;
+  width: min(1100px, 100% - 28px);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.player video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.pl-title {   position: absolute; top: 4%; left: 50%;
+  transform: translateX(-50%);
+  width: 24%;
+  pointer-events: none;
+}
+
+.pl-bigplay {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.35);
+  color: #fff; font-size: 26px;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .2s;
+}
+.pl-bigplay::before { content: "▶"; }
+.player.playing .pl-bigplay { opacity: 0; pointer-events: none; }
+
+.pl-card {
+  position: absolute;
+  left: 32%; bottom: 14%;
+  width: 36%; min-width: 260px;
+  padding: 12px 14px;
+  background: rgba(236, 30, 121, .55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 22px;
+  color: #fff;
+}
+.pl-top { display: flex; gap: 12px; align-items: center; }
+.pl-top img { width: 60px; height: 60px; object-fit: cover; background: #fff; }
+#pl-name   { font-family: var(--font-pixel); font-size: 10px; color: #000; }
+#pl-artist { font-family: var(--font-pixel); font-size: 8px; margin-top: 8px; }
+
+.pl-times {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-pixel); font-size: 7px;
+  margin-top: 2px;
+}
+
+.pl-ctrl { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.pl-center { display: flex; gap: 22px; }
+.pl-ctrl button { background: none; color: #000; font-size: 20px; }
+.pl-ctrl button:hover { transform: scale(1.15); }
+
+.pl-seek, .pl-seek-card {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px;
+  background: linear-gradient(to right, #fff var(--p, 0%), rgba(255,255,255,.4) var(--p, 0%));
+  border-radius: 4px; outline: none; cursor: pointer;
+  margin-top: 12px;
+}
+.pl-seek-card::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px;
+  background: #000; border-radius: 50%;
+}
+.pl-seek-card::-moz-range-thumb { width: 12px; height: 12px; background: #000; border: 0; border-radius: 50%; }
+
+.pl-seek {
+  position: absolute; left: 2%; right: 2%; bottom: 4%;
+  width: 96%; height: 8px; margin: 0;
+}
+.pl-seek::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 30px; height: 30px;
+  background: #fff; border-radius: 50%;
+}
+.pl-seek::-moz-range-thumb { width: 30px; height: 30px; background: #fff; border: 0; border-radius: 50%; }
+
+.pl-help { position: absolute; right: 2%; bottom: 8%; width: 45px; pointer-events: none; }
+
+@media (max-width: 760px) {
+  .pl-card { left: 4%; width: 92%; bottom: 12%; }
+  .pl-title { width: 40%; }
 }

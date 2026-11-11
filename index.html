@@ -42,9 +42,10 @@
   <button type="button" id="profilebtn">
     <span class="ic" style="--icon:url(img/perfil.png)"></span>Perfil
   </button>
-  <a href="#" data-view="view-playlist">
-  <span class="ic">♫</span>Playlist
-</a>
+  <!-- ALTERADO: sem data-view; rola até o comercial na Home -->
+  <a href="#playlist" id="goplaylist">
+    <span class="ic note">♫</span>Playlist
+  </a>
 </div>
 
     </form>
@@ -106,6 +107,48 @@
 
   <img class="dest-help" src="img/logos/interrogaçao.png" alt="">
 </div>
+
+      <!-- ---------- NOVO: Playlist / Comercial (no scroll da Home) ---------- -->
+      <div class="playlist-section" id="playlist">
+        <div class="player" id="player">
+
+          <video id="pl-video" playsinline preload="metadata"></video>
+
+          <img class="pl-title" src="img/logos/playlist-titulo.png" alt="Playlist a cara da Pink Fatality">
+
+          <button type="button" class="pl-bigplay" id="pl-bigplay" aria-label="Reproduzir"></button>
+
+          <!-- cartão de vidro rosa -->
+          <div class="pl-card">
+            <div class="pl-top">
+              <img id="pl-cover" src="" alt="">
+              <div class="pl-meta">
+                <div id="pl-name"></div>
+                <div id="pl-artist"></div>
+              </div>
+            </div>
+
+            <input type="range" class="pl-seek-card" id="pl-seek-card" min="0" max="100" step="0.1" value="0">
+            <div class="pl-times"><span id="pl-cur">00:00</span><span id="pl-dur">00:00</span></div>
+
+            <div class="pl-ctrl">
+              <button type="button" id="pl-mute" aria-label="Volume">🔊</button>
+              <div class="pl-center">
+                <button type="button" id="pl-prev" aria-label="Anterior">⏮</button>
+                <button type="button" id="pl-play" aria-label="Play/Pause">▶</button>
+                <button type="button" id="pl-next" aria-label="Próxima">⏭</button>
+              </div>
+              <button type="button" id="pl-full" aria-label="Tela cheia">⛶</button>
+            </div>
+          </div>
+
+          <!-- barra grande embaixo -->
+          <input type="range" class="pl-seek" id="pl-seek" min="0" max="100" step="0.1" value="0">
+
+          <img class="pl-help" src="img/logos/interrogaçao.png" alt="">
+        </div>
+      </div>
+
       <!-- ---------- Footer (só na página inicial) ---------- -->
       <footer>
         <div class="topbar footer-topbar">
@@ -180,8 +223,9 @@
     <section id="view-product" class="view">
   <h2 class="section-title">PRODUTOS</h2>
   <div class="pdetail" id="product-detail"></div>
-  <div id="product-tabs"></div>   <!-- NOVO -->
+  <div id="product-tabs"></div>
 </section>
+
 <!-- Modal: Adicionado ao carrinho -->
 <div class="added-modal" id="added-modal" role="dialog" aria-modal="true">
   <button class="added-close" id="added-close" aria-label="Fechar"></button>
@@ -203,6 +247,7 @@
     <button type="button" id="added-gocart">Ir para carrinho →</button>
   </div>
 </div>
+
     <!-- ---------- Página: Cadastro ---------- -->
   <section id="view-signup" class="view">
   <h2 class="section-title">CADASTRO</h2>
@@ -286,27 +331,28 @@
       <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
     </div>
 
- <div id="cart-items"></div>
+    <div id="cart-items"></div>
 
-<div class="cart-footer">
-  <div class="ctotal">
-    <span>QUANTIDADE DE PRODUTOS</span>
-    <b id="cart-count">00</b>
-  </div>
+    <div class="cart-footer">
+      <div class="ctotal">
+        <span>QUANTIDADE DE PRODUTOS</span>
+        <b id="cart-count">00</b>
+      </div>
 
-  <div class="ctotal">
-    <span>TOTAL</span>
-    <div class="ctotal-values">
-      <b id="cart-total">R$0,00</b>
-      <small id="cart-inst"></small>
+      <div class="ctotal">
+        <span>TOTAL</span>
+        <div class="ctotal-values">
+          <b id="cart-total">R$0,00</b>
+          <small id="cart-inst"></small>
+        </div>
+      </div>
+
+      <div class="cactions">
+        <button data-close="cart-drawer">Adicionar mais itens</button>
+        <button class="main" id="checkoutbtn">Finalizar compra (00)</button>
+      </div>
     </div>
-  </div>
-
-  <div class="cactions">
-    <button data-close="cart-drawer">Adicionar mais itens</button>
-    <button class="main" id="checkoutbtn">Finalizar compra (00)</button>
-  </div>
-</div>
+  </div><!-- fim do cart-drawer (faltava fechar no original) -->
 
   <!-- Painel: Login -->
   <div class="drawer small" id="profile-drawer">
