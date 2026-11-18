@@ -747,8 +747,8 @@ document.getElementById("dest-prev").addEventListener("click", () => {
 
 const playlist = [
   {
-    video: "videos/comercial1.mp4",
-    cover: "img/capas/gimme-more.jpg",
+    video: "videos/comercial.MOV",
+    cover: "img/capas/gimme-more-cover.png",
     name: "Gimme More",
     artist: "Britney Spears"
   }
